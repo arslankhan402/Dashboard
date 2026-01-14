@@ -160,7 +160,17 @@ if (logoutBtn) {
 navItems.forEach(item => {
     item.addEventListener("click", event => {
         event.preventDefault();
-        setActivePage(item.dataset.page);
+        const action = item.dataset.action;
+        if (action === "logout") {
+            setStoredSignIn(false);
+            window.location.href = "index.html";
+            return;
+        }
+        const targetPage = item.dataset.page;
+        if (!targetPage) {
+            return;
+        }
+        setActivePage(targetPage);
         if (window.innerWidth <= 900 && sidebar) {
             sidebar.classList.remove("open");
         }
