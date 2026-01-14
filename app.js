@@ -13,6 +13,20 @@ const profileDropdown = document.querySelector("#profileDropdown");
 const todayDate = document.querySelector("#todayDate");
 const iconMenus = document.querySelectorAll(".icon-menu");
 const iconMenuTriggers = document.querySelectorAll("[data-menu-target]");
+const navbarNotificationBtn = document.querySelector("#navbarNotificationBtn");
+const notificationPanel = document.querySelector("#notificationPanel");
+const notificationList = document.querySelector("#notificationList");
+const notificationEmpty = document.querySelector("#notificationEmpty");
+const notificationsAll = document.querySelector("#notificationsAll");
+const notificationsAllEmpty = document.querySelector("#notificationsAllEmpty");
+const profileForm = document.querySelector("#profileForm");
+const profileStatus = document.querySelector("#profileStatus");
+const profileNameInput = document.querySelector("#profileName");
+const profileRoleInput = document.querySelector("#profileRole");
+const profileImageInput = document.querySelector("#profileImage");
+const profileNameDisplay = document.querySelector("#profileNameDisplay");
+const profileRoleDisplay = document.querySelector("#profileRoleDisplay");
+const profilePhoto = document.querySelector("#profilePhoto");
 
 const startWorkBtn = document.querySelector("#startWork");
 const startBreakBtn = document.querySelector("#startBreak");
@@ -29,8 +43,53 @@ const state = {
     breakStarted: false,
     breakEnded: false,
     workEnded: false,
-    calendarDate: new Date()
+    calendarDate: new Date(),
+    notifications: [
+        { id: 1, text: "New policy update shared by HR.", unread: true, time: "Today, 9:10 AM" },
+        { id: 2, text: "Pending approval for leave request.", unread: true, time: "Today, 8:40 AM" },
+        { id: 3, text: "Weekly attendance report is ready.", unread: false, time: "Yesterday, 6:15 PM" },
+        { id: 4, text: "IT maintenance scheduled for Friday.", unread: false, time: "Aug 12, 11:00 AM" }
+    ]
 };
+
+const PROFILE_STORAGE_KEY = "gp_profile";
+
+function getStoredProfile() {
+    try {
+        const stored = localStorage.getItem(PROFILE_STORAGE_KEY);
+        if (!stored) return null;
+        return JSON.parse(stored);
+    } catch (error) {
+        return null;
+    }
+}
+
+function setStoredProfile(profile) {
+    try {
+        localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+    } catch (error) {
+        // Ignore storage errors.
+    }
+}
+
+function applyProfile(profile) {
+    if (!profile) return;
+    if (profileNameDisplay && profile.name) {
+        profileNameDisplay.textContent = profile.name;
+    }
+    if (profileRoleDisplay && profile.role) {
+        profileRoleDisplay.textContent = profile.role;
+    }
+    if (profilePhoto && profile.photo) {
+        profilePhoto.src = profile.photo;
+    }
+    if (profileNameInput) {
+        profileNameInput.value = profile.name || "";
+    }
+    if (profileRoleInput) {
+        profileRoleInput.value = profile.role || "";
+    }
+}
 
 function getStoredSignIn() {
     try {
@@ -140,13 +199,60 @@ function setActivePage(targetPage) {
     });
 }
 
+function hasUnreadNotifications() {
+    return state.notifications.some(item => item.unread);
+}
+
+function renderNotifications() {
+    if (!notificationList || !notificationEmpty) return;
+    const unread = state.notifications.filter(item => item.unread);
+    notificationList.innerHTML = "";
+    if (unread.length === 0) {
+        notificationEmpty.hidden = false;
+        return;
+    }
+    notificationEmpty.hidden = true;
+    unread.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.text;
+        notificationList.appendChild(li);
+    });
+}
+
+function renderAllNotifications() {
+    if (!notificationsAll || !notificationsAllEmpty) return;
+    notificationsAll.innerHTML = "";
+    if (state.notifications.length === 0) {
+        notificationsAllEmpty.hidden = false;
+        return;
+    }
+    notificationsAllEmpty.hidden = true;
+    state.notifications.forEach(item => {
+        const li = document.createElement("li");
+        const label = document.createElement("span");
+        const meta = document.createElement("span");
+        label.textContent = item.text;
+        meta.textContent = item.unread ? "Unread" : "Read";
+        meta.className = "tag";
+        li.appendChild(label);
+        li.appendChild(meta);
+        notificationsAll.appendChild(li);
+    });
+}
+
+function updateNotificationDots() {
+    const showDot = hasUnreadNotifications();
+    document.querySelectorAll(".notification-dot").forEach(dot => {
+        dot.classList.toggle("visible", showDot);
+    });
+}
+
 if (sidebarToggle && sidebar) {
     sidebarToggle.addEventListener("click", () => {
+        const isHidden = document.body.classList.toggle("sidebar-hidden");
         if (window.innerWidth <= 900) {
-            sidebar.classList.toggle("open");
-            return;
+            sidebar.classList.toggle("open", !isHidden);
         }
-        document.body.classList.toggle("sidebar-hidden");
     });
 }
 
@@ -171,6 +277,12 @@ navItems.forEach(item => {
             return;
         }
         setActivePage(targetPage);
+        if (targetPage === "notifications") {
+            renderAllNotifications();
+        }
+        if (targetPage === "profile") {
+            applyProfile(getStoredProfile());
+        }
         if (window.innerWidth <= 900 && sidebar) {
             sidebar.classList.remove("open");
         }
@@ -193,6 +305,14 @@ iconMenuTriggers.forEach(trigger => {
         }
     });
 });
+
+if (navbarNotificationBtn && notificationPanel) {
+    navbarNotificationBtn.addEventListener("click", event => {
+        event.stopPropagation();
+        renderNotifications();
+        notificationPanel.classList.toggle("open");
+    });
+}
 
 if (prevMonthBtn && nextMonthBtn) {
     prevMonthBtn.addEventListener("click", () => {
@@ -221,6 +341,9 @@ document.addEventListener("click", event => {
                 dropdown?.classList.remove("open");
             }
         });
+    }
+    if (notificationPanel && !notificationPanel.contains(event.target) && !navbarNotificationBtn?.contains(event.target)) {
+        notificationPanel.classList.remove("open");
     }
     if (!profileDropdown || !profileTrigger) return;
     if (!profileDropdown.contains(event.target) && !profileTrigger.contains(event.target)) {
@@ -282,4 +405,38 @@ if (!getStoredSignIn()) {
     if (todayDate) {
         todayDate.textContent = formatToday(new Date());
     }
+}
+renderNotifications();
+updateNotificationDots();
+renderAllNotifications();
+applyProfile(getStoredProfile());
+
+if (profileForm) {
+    profileForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const profile = {
+            name: profileNameInput ? profileNameInput.value.trim() : "",
+            role: profileRoleInput ? profileRoleInput.value.trim() : "",
+            photo: profilePhoto ? profilePhoto.src : ""
+        };
+
+        if (profileImageInput && profileImageInput.files && profileImageInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                profile.photo = reader.result;
+                setStoredProfile(profile);
+                applyProfile(profile);
+                if (profileStatus) {
+                    profileStatus.hidden = false;
+                }
+            };
+            reader.readAsDataURL(profileImageInput.files[0]);
+        } else {
+            setStoredProfile(profile);
+            applyProfile(profile);
+            if (profileStatus) {
+                profileStatus.hidden = false;
+            }
+        }
+    });
 }

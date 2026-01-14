@@ -18,35 +18,23 @@
             </div>
             <div class="topbar-center">GoProgs Technologies Pvt Ltd</div>
             <div class="topbar-right">
-                <div class="icon-menu">
-                    <button class="icon-box icon-only" type="button" aria-label="Apps" data-menu-target="menuApps">
-                        <span class="icon-grid"></span>
-                    </button>
-                    <div class="icon-dropdown" id="menuApps">
-                        <div class="icon-dropdown-title">Quick Nav</div>
-                        <div class="icon-dropdown-grid">
-                            <button type="button">Attend</button>
-                            <button type="button">Leave</button>
-                            <button type="button">Notice</button>
-                            <button type="button">Task</button>
-                            <button type="button">Notes</button>
-                            <button type="button">Alerts</button>
-                            <button type="button">Remind</button>
-                            <button type="button">Hall</button>
-                            <button type="button">Cal</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="profile-menu">
-                    <button class="icon-box profile-trigger" id="profileTrigger" type="button" aria-expanded="false">
-                        <span class="avatar">AK</span>
-                        <span class="profile-name">Arslan Khan</span>
+                    <button class="icon-box icon-only notification-btn" id="navbarNotificationBtn" type="button" aria-label="Notifications">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot" aria-hidden="true"></span>
                     </button>
-                    <div class="profile-dropdown" id="profileDropdown" role="menu">
-                        <button type="button" role="menuitem">Settings</button>
-                        <button type="button" role="menuitem">Lock</button>
-                        <button type="button" role="menuitem" id="logoutBtn">Logout</button>
+                    <div class="notification-panel" id="notificationPanel" role="dialog" aria-live="polite">
+                        <div class="notification-title">Unread Notifications</div>
+                        <ul class="notification-list" id="notificationList"></ul>
+                        <div class="notification-empty" id="notificationEmpty" hidden>No unread notifications.</div>
                     </div>
+                    <button class="profile-trigger" id="profileTrigger" type="button" aria-expanded="false">
+                        <img class="profile-photo" id="profilePhoto" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Arslan Khan">
+                        <span class="profile-info">
+                            <span class="profile-name" id="profileNameDisplay">Arslan Khan</span>
+                            <span class="profile-role" id="profileRoleDisplay">Product Manager</span>
+                        </span>
+                    </button>
                 </div>
             </div>
         </header>
@@ -99,9 +87,14 @@
                 <div class="sidebar-section sidebar-account">
                     <div class="sidebar-title">Account</div>
                     <nav class="nav">
-                        <a href="#" class="nav-item">
+                        <a href="#" class="nav-item" data-page="profile">
+                            <span class="nav-icon"><i class="bi bi-person"></i></span>
+                            <span class="nav-text">Profile</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="notifications">
                             <span class="nav-icon"><i class="bi bi-bell-fill"></i></span>
                             <span class="nav-text">Notification</span>
+                            <span class="notification-dot" aria-hidden="true"></span>
                         </a>
                         <a href="#" class="nav-item" data-action="logout">
                             <span class="nav-icon"><i class="bi bi-box-arrow-right"></i></span>
@@ -361,6 +354,42 @@
                     </div>
                     <div class="calendar-grid" id="calendarGrid"></div>
                 </div>
+            </section>
+
+            <section class="page" data-page="notifications">
+                <section class="section">
+                    <h1>Notifications</h1>
+                    <p class="subtitle">All updates, including unread and read notifications.</p>
+                </section>
+                <section class="card-grid">
+                    <article class="card large">
+                        <h2>All Notifications</h2>
+                        <ul class="list" id="notificationsAll"></ul>
+                        <div class="notification-empty" id="notificationsAllEmpty" hidden>No notifications to display.</div>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="profile">
+                <section class="section">
+                    <h1>Profile</h1>
+                    <p class="subtitle">Update your profile details and keep information accurate.</p>
+                </section>
+                <section class="card-grid">
+                    <article class="card large">
+                        <h2>Edit Profile</h2>
+                        <form class="form" id="profileForm" novalidate>
+                            <label for="profileName">Full name</label>
+                            <input id="profileName" type="text" placeholder="Arslan Khan" required>
+                            <label for="profileRole">Designation</label>
+                            <input id="profileRole" type="text" placeholder="Product Manager" required>
+                            <label for="profileImage">Profile picture</label>
+                            <input id="profileImage" type="file" accept="image/*">
+                            <div class="form-note" id="profileStatus" hidden>Profile updated.</div>
+                            <button class="primary-btn" type="submit">Save Changes</button>
+                        </form>
+                    </article>
+                </section>
             </section>
         </main>
     </div>
