@@ -8,7 +8,7 @@
     --border: #e0e5ef;
     --shadow: 0 18px 40px rgba(24, 33, 54, 0.12);
     --radius: 16px;
-    --font: "Source Sans 3", "Segoe UI", sans-serif;
+    --font: "DM Sans", "Segoe UI", sans-serif;
 }
 
 * {
@@ -102,8 +102,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 18px 28px;
+    gap: 10px;
+    padding: 12px 20px;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     box-shadow: 0 6px 18px rgba(24, 33, 54, 0.08);
@@ -116,21 +116,21 @@ body {
 .topbar-right {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .topbar-center {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--primary);
+    color: #000000;
 }
 
 .icon-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     background: #f8f9fc;
     cursor: pointer;
@@ -143,27 +143,27 @@ body {
 .icon-lines::after {
     content: "";
     display: block;
-    width: 18px;
+    width: 14px;
     height: 2px;
-    background: var(--primary);
+    background: #000000;
     border-radius: 2px;
     position: relative;
 }
 
 .icon-lines::before {
     position: absolute;
-    top: -6px;
+    top: -5px;
 }
 
 .icon-lines::after {
     position: absolute;
-    top: 6px;
+    top: 5px;
 }
 
 .icon-home {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     background: #eef2f9;
     position: relative;
 }
@@ -172,7 +172,7 @@ body {
     content: "";
     position: absolute;
     inset: 10px 8px 8px;
-    border: 2px solid var(--primary);
+    border: 2px solid #000000;
     border-top: none;
     border-radius: 2px;
 }
@@ -184,27 +184,27 @@ body {
     left: 8px;
     width: 18px;
     height: 12px;
-    border-left: 2px solid var(--primary);
-    border-top: 2px solid var(--primary);
-    border-right: 2px solid var(--primary);
+    border-left: 2px solid #000000;
+    border-top: 2px solid #000000;
+    border-right: 2px solid #000000;
     transform: skewY(-20deg);
 }
 
 .icon-box {
-    height: 40px;
-    border-radius: 12px;
+    height: 32px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     background: #f8f9fc;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0 14px;
+    padding: 0 10px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .icon-box.icon-only {
-    width: 40px;
+    width: 32px;
     padding: 0;
     justify-content: center;
 }
@@ -266,17 +266,17 @@ body {
 }
 
 .icon-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: #f28f3b;
+    background: #000000;
 }
 
 .icon-chat {
-    width: 16px;
-    height: 12px;
+    width: 14px;
+    height: 10px;
     border-radius: 4px;
-    border: 2px solid var(--primary);
+    border: 2px solid #000000;
     position: relative;
 }
 
@@ -287,14 +287,14 @@ body {
     left: 4px;
     width: 8px;
     height: 8px;
-    border-left: 2px solid var(--primary);
-    border-bottom: 2px solid var(--primary);
+    border-left: 2px solid #000000;
+    border-bottom: 2px solid #000000;
     transform: skewX(-15deg);
 }
 
 .icon-grid {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 3px;
@@ -305,8 +305,8 @@ body {
     content: "";
     width: 6px;
     height: 6px;
-    background: var(--primary);
-    box-shadow: 10px 0 var(--primary), 0 10px var(--primary), 10px 10px var(--primary);
+    background: #000000;
+    box-shadow: 8px 0 #000000, 0 8px #000000, 8px 8px #000000;
 }
 
 .profile-menu {
@@ -314,9 +314,9 @@ body {
 }
 
 .profile-trigger {
-    background: var(--primary);
-    color: #fff;
-    border-color: transparent;
+    background: transparent;
+    color: #000000;
+    border-color: var(--border);
 }
 
 .profile-trigger .profile-name {
@@ -605,16 +605,18 @@ body {
 
 .section h1 {
     margin: 0 0 6px;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 .subtitle {
     margin: 0;
+    font-size: 13px;
     color: var(--muted);
 }
 
 .today {
     margin: 6px 0 0;
+    font-size: 12px;
     color: var(--primary);
     font-weight: 600;
 }
@@ -641,10 +643,45 @@ body {
     min-height: 170px;
 }
 
+.card.compact {
+    padding: 14px;
+    min-height: 130px;
+    gap: 8px;
+}
+
+.card.compact h2 {
+    font-size: 15px;
+}
+
+.card.compact .timestamp {
+    font-size: 13px;
+}
+
+.card.compact .primary-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
 .card.large {
     min-height: 260px;
 }
 
+.card.large.compact-large {
+    min-height: 200px;
+    padding: 16px;
+}
+
+.card.large.compact-large h2 {
+    font-size: 16px;
+}
+
+.card.large.compact-large .list li {
+    font-size: 13px;
+}
+
+.card.large.compact-large .tag {
+    font-size: 11px;
+}
 .card h2 {
     margin: 0;
     font-size: 18px;
@@ -657,18 +694,42 @@ body {
 
 .primary-btn {
     border: none;
-    border-radius: 999px;
-    padding: 12px 16px;
-    background: var(--primary);
-    color: #fff;
+    border-radius: 8px;
+    padding: 8px 22px;
+    --btn-bg: var(--primary);
+    --btn-color: #ffffff;
+    background: var(--btn-bg);
+    color: var(--btn-color);
     font-weight: 600;
+    min-width: 96px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.primary-btn:hover {
-    transform: translateY(-2px);
+.primary-btn:hover,
+.primary-btn:active,
+.primary-btn:focus {
     box-shadow: 0 12px 20px rgba(22, 71, 114, 0.25);
+    transform: translateY(-2px);
+}
+
+.primary-btn:focus {
+    outline: none;
+}
+
+.primary-btn.break-start-btn {
+    --btn-bg: #c0fffc;
+    --btn-color: #0a2b2b;
+}
+
+.primary-btn.break-end-btn {
+    --btn-bg: #fce0a5;
+    --btn-color: #553c00;
+}
+
+.primary-btn.work-end-btn {
+    --btn-bg: #cbd2ff;
+    --btn-color: #1f2a44;
 }
 
 .primary-btn:disabled {
