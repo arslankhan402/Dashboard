@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="icon-button" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <span class="icon-lines"></span>
+                </button>
+                <div class="icon-home" aria-hidden="true"></div>
+            </div>
+            <div class="topbar-center">GoProgs Technologies Pvt Ltd</div>
+            <div class="topbar-right">
+                <div class="icon-menu">
+                    <button class="icon-box icon-only" type="button" aria-label="Apps" data-menu-target="menuApps">
+                        <span class="icon-grid"></span>
+                    </button>
+                    <div class="icon-dropdown" id="menuApps">
+                        <div class="icon-dropdown-title">Quick Nav</div>
+                        <div class="icon-dropdown-grid">
+                            <button type="button">Attend</button>
+                            <button type="button">Leave</button>
+                            <button type="button">Notice</button>
+                            <button type="button">Task</button>
+                            <button type="button">Notes</button>
+                            <button type="button">Alerts</button>
+                            <button type="button">Remind</button>
+                            <button type="button">Hall</button>
+                            <button type="button">Cal</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-menu">
+                    <button class="icon-box profile-trigger" id="profileTrigger" type="button" aria-expanded="false">
+                        <span class="avatar">AK</span>
+                        <span class="profile-name">Arslan Khan</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown" role="menu">
+                        <button type="button" role="menuitem">Settings</button>
+                        <button type="button" role="menuitem">Lock</button>
+                        <button type="button" role="menuitem" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">Navigation</div>
+            <nav class="nav">
+                <a href="#" class="nav-item active" data-page="dashboard"><span class="nav-icon icon-attendance"></span>Attendance Log</a>
+                <a href="#" class="nav-item" data-page="leave"><span class="nav-icon icon-leave"></span>Leave</a>
+                <a href="#" class="nav-item" data-page="noticeboard"><span class="nav-icon icon-notice"></span>Noticeboard</a>
+                <a href="#" class="nav-item" data-page="task"><span class="nav-icon icon-task"></span>Task</a>
+                <a href="#" class="nav-item" data-page="notes"><span class="nav-icon icon-notes"></span>Notes</a>
+                <a href="#" class="nav-item" data-page="alerts"><span class="nav-icon icon-alerts"></span>Alerts</a>
+                <a href="#" class="nav-item" data-page="reminder"><span class="nav-icon icon-reminder"></span>Reminder</a>
+                <a href="#" class="nav-item" data-page="halloffame"><span class="nav-icon icon-hof"></span>Hall of Fame</a>
+                <a href="#" class="nav-item" data-page="calendar"><span class="nav-icon icon-calendar"></span>Calendar</a>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <section class="page active" data-page="dashboard">
+                <section class="section">
+                    <h1>Employee Dashboard</h1>
+                    <p class="subtitle">Track attendance, manage breaks, and stay on top of your tasks.</p>
+                    <p class="today" id="todayDate"></p>
+                </section>
+
+                <section class="card-grid">
+                    <article class="card">
+                        <h2>Started Work</h2>
+                        <p class="timestamp" id="startTime">Not started</p>
+                        <button class="primary-btn" id="startWork">Start Work</button>
+                    </article>
+                    <article class="card">
+                        <h2>Click to Start Break</h2>
+                        <p class="timestamp" id="startBreakTime">Not started</p>
+                        <button class="primary-btn" id="startBreak">Start Break</button>
+                    </article>
+                    <article class="card">
+                        <h2>Click to End Break</h2>
+                        <p class="timestamp" id="endBreakTime">Not ended</p>
+                        <button class="primary-btn" id="endBreak">End Break</button>
+                    </article>
+                    <article class="card">
+                        <h2>Click to End Work</h2>
+                        <p class="timestamp" id="endWorkTime">Not ended</p>
+                        <button class="primary-btn" id="endWork">End Work</button>
+                    </article>
+                </section>
+
+                <section class="card-grid two-column">
+                    <article class="card large">
+                        <h2>Recently Assigned Tasks</h2>
+                        <ul class="list">
+                            <li><span>Finalize Q3 performance report</span><span class="tag">High priority</span></li>
+                            <li><span>Update attendance policy brief</span><span class="tag">Due Fri</span></li>
+                            <li><span>Review onboarding checklist</span><span class="tag">New</span></li>
+                            <li><span>Coordinate client follow-up</span><span class="tag">In progress</span></li>
+                        </ul>
+                    </article>
+                    <article class="card large">
+                        <h2>Upcoming Events</h2>
+                        <ul class="list">
+                            <li><span>Team stand-up meeting</span><span class="tag">Today 10:30 AM</span></li>
+                            <li><span>Client presentation rehearsal</span><span class="tag">Tomorrow 2:00 PM</span></li>
+                            <li><span>HR policy review</span><span class="tag">Aug 22</span></li>
+                            <li><span>Project milestone check-in</span><span class="tag">Aug 27</span></li>
+                        </ul>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="leave">
+                <section class="section">
+                    <h1>Leave Management</h1>
+                    <p class="subtitle">Apply, track, and approve leave requests.</p>
+                </section>
+                <section class="card-grid two-column">
+                    <article class="card">
+                        <h2>Request Leave</h2>
+                        <div class="form">
+                            <label>Leave type</label>
+                            <select>
+                                <option>Annual Leave</option>
+                                <option>Sick Leave</option>
+                                <option>Work From Home</option>
+                            </select>
+                            <label>From - To</label>
+                            <input type="text" placeholder="Aug 20 - Aug 22">
+                            <button class="primary-btn">Submit Request</button>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <h2>Leave Balance</h2>
+                        <ul class="list">
+                            <li><span>Annual Leave</span><span class="tag">12 days</span></li>
+                            <li><span>Sick Leave</span><span class="tag">6 days</span></li>
+                            <li><span>WFH Days</span><span class="tag">4 days</span></li>
+                        </ul>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="noticeboard">
+                <section class="section">
+                    <h1>Noticeboard</h1>
+                    <p class="subtitle">Company updates and internal announcements.</p>
+                </section>
+                <section class="card-grid two-column">
+                    <article class="card large">
+                        <h2>Latest Notices</h2>
+                        <ul class="list">
+                            <li><span>Policy update: remote work guidelines</span><span class="tag">Today</span></li>
+                            <li><span>Office maintenance scheduled</span><span class="tag">Aug 19</span></li>
+                            <li><span>Employee wellness program launch</span><span class="tag">Aug 15</span></li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h2>Quick Links</h2>
+                        <ul class="list">
+                            <li><span>HR handbook</span><span class="tag">PDF</span></li>
+                            <li><span>IT support portal</span><span class="tag">Open</span></li>
+                            <li><span>Travel policy</span><span class="tag">PDF</span></li>
+                        </ul>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="task">
+                <section class="section">
+                    <h1>Task Center</h1>
+                    <p class="subtitle">Track tasks assigned by your managers.</p>
+                </section>
+                <section class="card-grid">
+                    <article class="card large">
+                        <h2>Active Tasks</h2>
+                        <ul class="list">
+                            <li><span>Prepare monthly KPI dashboard</span><span class="tag">Due Aug 21</span></li>
+                            <li><span>Client feedback compilation</span><span class="tag">In review</span></li>
+                            <li><span>Process payroll approvals</span><span class="tag">Due Aug 23</span></li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h2>Create Task</h2>
+                        <div class="form">
+                            <label>Task name</label>
+                            <input type="text" placeholder="Enter task title">
+                            <label>Priority</label>
+                            <select>
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                            <button class="primary-btn">Add Task</button>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="notes">
+                <section class="section">
+                    <h1>Notes</h1>
+                    <p class="subtitle">Capture quick notes and key reminders.</p>
+                </section>
+                <section class="card-grid two-column">
+                    <article class="card large">
+                        <h2>Recent Notes</h2>
+                        <ul class="list">
+                            <li><span>Client call action items</span><span class="tag">Updated</span></li>
+                            <li><span>Budget planning highlights</span><span class="tag">Draft</span></li>
+                            <li><span>Onboarding checklist updates</span><span class="tag">Shared</span></li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h2>Add a Note</h2>
+                        <div class="form">
+                            <label>Title</label>
+                            <input type="text" placeholder="Note title">
+                            <label>Summary</label>
+                            <input type="text" placeholder="Short summary">
+                            <button class="primary-btn">Save Note</button>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="alerts">
+                <section class="section">
+                    <h1>Alerts</h1>
+                    <p class="subtitle">Critical notifications that need attention.</p>
+                </section>
+                <section class="card-grid">
+                    <article class="card large">
+                        <h2>Active Alerts</h2>
+                        <ul class="list">
+                            <li><span>Pending approval for expense report</span><span class="tag">Action required</span></li>
+                            <li><span>Security update available</span><span class="tag">Review</span></li>
+                            <li><span>Overdue follow-up for client A</span><span class="tag">High</span></li>
+                        </ul>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="reminder">
+                <section class="section">
+                    <h1>Reminder Center</h1>
+                    <p class="subtitle">Stay on top of scheduled actions.</p>
+                </section>
+                <section class="card-grid two-column">
+                    <article class="card">
+                        <h2>Set Reminder</h2>
+                        <div class="form">
+                            <label>Reminder</label>
+                            <input type="text" placeholder="Submit timesheet">
+                            <label>Date</label>
+                            <input type="text" placeholder="Aug 24, 09:00 AM">
+                            <button class="primary-btn">Create Reminder</button>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <h2>Upcoming Reminders</h2>
+                        <ul class="list">
+                            <li><span>Submit weekly report</span><span class="tag">Tomorrow</span></li>
+                            <li><span>Payroll review meeting</span><span class="tag">Aug 25</span></li>
+                            <li><span>Renew team access passes</span><span class="tag">Aug 28</span></li>
+                        </ul>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="halloffame">
+                <section class="section">
+                    <h1>Hall of Fame</h1>
+                    <p class="subtitle">Celebrate top performers and milestones.</p>
+                </section>
+                <section class="card-grid two-column">
+                    <article class="card large">
+                        <h2>Top Performers</h2>
+                        <ul class="list">
+                            <li><span>Ritika Sharma</span><span class="tag">Employee of the Month</span></li>
+                            <li><span>Imran Malik</span><span class="tag">Sales Champion</span></li>
+                            <li><span>Neha Patel</span><span class="tag">Customer Hero</span></li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h2>Achievements</h2>
+                        <ul class="list">
+                            <li><span>50 projects delivered</span><span class="tag">2024</span></li>
+                            <li><span>100% compliance audit</span><span class="tag">Q2</span></li>
+                            <li><span>Client satisfaction 4.9/5</span><span class="tag">Latest</span></li>
+                        </ul>
+                    </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="calendar">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button class="icon-button" type="button" id="prevMonth" aria-label="Previous month">
+                            <span class="chevron chevron-left"></span>
+                        </button>
+                        <div class="calendar-title" id="calendarTitle"></div>
+                        <button class="icon-button" type="button" id="nextMonth" aria-label="Next month">
+                            <span class="chevron chevron-right"></span>
+                        </button>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
