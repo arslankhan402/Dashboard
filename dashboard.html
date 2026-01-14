@@ -107,33 +107,30 @@
 
         <main class="main">
             <section class="page active" data-page="dashboard">
-                <section class="section">
-                    <h1>Employee Dashboard</h1>
-                    <p class="subtitle">Track attendance, manage breaks, and stay on top of your tasks.</p>
-                    <p class="today" id="todayDate"></p>
-                </section>
-
-                <section class="card-grid">
-                    <article class="card compact">
-                        <h2>Started Work</h2>
-                        <p class="timestamp" id="startTime">Not started</p>
-                        <button class="primary-btn" id="startWork">Start Work</button>
-                    </article>
-                    <article class="card compact">
-                        <h2>Click to Start Break</h2>
-                        <p class="timestamp" id="startBreakTime">Not started</p>
-                        <button class="primary-btn break-start-btn" id="startBreak">Start Break</button>
-                    </article>
-                    <article class="card compact">
-                        <h2>Click to End Break</h2>
-                        <p class="timestamp" id="endBreakTime">Not ended</p>
-                        <button class="primary-btn break-end-btn" id="endBreak">End Break</button>
-                    </article>
-                    <article class="card compact">
-                        <h2>Click to End Work</h2>
-                        <p class="timestamp" id="endWorkTime">Not ended</p>
-                        <button class="primary-btn work-end-btn" id="endWork">End Work</button>
-                    </article>
+                <section class="attendance-section">
+                    <h1 class="section-title">Attendance</h1>
+                    <div class="card-grid">
+                        <article class="card compact work-start-card">
+                            <h2>Started Work</h2>
+                            <p class="timestamp" id="startTime">Not started</p>
+                            <button class="primary-btn" id="startWork">Start Work</button>
+                        </article>
+                        <article class="card compact break-start-card">
+                            <h2>Click to Start Break</h2>
+                            <p class="timestamp" id="startBreakTime">Not started</p>
+                            <button class="primary-btn break-start-btn" id="startBreak">Start Break</button>
+                        </article>
+                        <article class="card compact break-end-card">
+                            <h2>Click to End Break</h2>
+                            <p class="timestamp" id="endBreakTime">Not ended</p>
+                            <button class="primary-btn break-end-btn" id="endBreak">End Break</button>
+                        </article>
+                        <article class="card compact work-end-card">
+                            <h2>Click to End Work</h2>
+                            <p class="timestamp" id="endWorkTime">Not ended</p>
+                            <button class="primary-btn work-end-btn" id="endWork">End Work</button>
+                        </article>
+                    </div>
                 </section>
 
                 <section class="card-grid two-column">

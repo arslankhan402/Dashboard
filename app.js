@@ -402,9 +402,6 @@ if (!getStoredSignIn()) {
     window.location.href = "index.html";
 } else {
     setActivePage("dashboard");
-    if (todayDate) {
-        todayDate.textContent = formatToday(new Date());
-    }
 }
 renderNotifications();
 updateNotificationDots();
