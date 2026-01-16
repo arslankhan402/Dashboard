@@ -135,6 +135,13 @@ function updateButtons() {
     startBreakBtn.disabled = !state.workStarted || state.breakStarted || state.workEnded;
     endBreakBtn.disabled = !state.breakStarted || state.breakEnded;
     endWorkBtn.disabled = !state.workStarted || state.workEnded || !state.breakEnded && state.breakStarted;
+    const pendingButtons = [startBreakBtn, endBreakBtn, endWorkBtn].filter(Boolean);
+    pendingButtons.forEach(btn => btn.classList.remove("pending"));
+    if (state.workStarted && !state.workEnded) {
+        pendingButtons
+            .filter(btn => !btn.disabled)
+            .forEach(btn => btn.classList.add("pending"));
+    }
 }
 
 function renderCalendar(date) {
@@ -357,6 +364,7 @@ if (startWorkBtn) {
         if (state.workStarted) return;
         state.workStarted = true;
         startTime.textContent = formatTime(new Date());
+        startWorkBtn.classList.remove("hover-disabled");
         updateButtons();
     });
 }

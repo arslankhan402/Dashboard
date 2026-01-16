@@ -323,7 +323,7 @@ body {
 
 .notification-btn {
     border-color: rgba(191, 197, 204, 0.5);
-    color: #000000;
+    color: #0080fc;
     background: transparent;
     position: relative;
 }
@@ -481,11 +481,11 @@ body {
     grid-row: 1 / -1;
     transition: width 0.3s ease, transform 0.3s ease;
     will-change: transform;
-    box-shadow: 6px 0 18px rgba(0, 0, 0, 0.12);
-    border-radius: 16px;
+    box-shadow: none;
+    border-radius: 0;
     min-height: 100vh;
-    margin-left: 12px;
-    margin-top: 10px;
+    margin-left: 0;
+    margin-top: 0;
 }
 
 .sidebar-content {
@@ -537,15 +537,17 @@ body {
     gap: 12px;
     padding: 10px 12px;
     border-radius: 12px;
-    color: #667080;
+    color: #3b3f46;
     text-decoration: none;
     background: transparent;
     transition: background 0.2s ease, color 0.2s ease;
+    font-weight: 500;
 }
 
 .nav-item.active {
-    background: #0080fc;
-    color: #ffffff;
+    background: #ededed;
+    color: #000000;
+    font-weight: 600;
 }
 
 
@@ -556,7 +558,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    color: inherit;
+    color: #0080fc;
 }
 
 .nav-text {
@@ -755,6 +757,7 @@ body {
 
 .attendance-section .card-grid {
     margin-top: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
 
 .card-grid {
@@ -773,7 +776,7 @@ body {
     border-radius: 0;
     padding: 20px;
     border: 1px solid var(--border);
-    box-shadow: 0 12px 24px rgba(24, 33, 54, 0.08);
+    /* box-shadow: 0 12px 24px rgba(24, 33, 54, 0.08); */
     display: grid;
     gap: 12px;
     min-height: 170px;
@@ -783,6 +786,9 @@ body {
     padding: 14px;
     min-height: 130px;
     gap: 8px;
+    border: none;
+    max-width: 220px;
+    
 }
 
 .card.compact h2 {
@@ -793,29 +799,118 @@ body {
     font-size: 13px;
 }
 
+/* (Btn CSS) */
 .card.compact .primary-btn {
-    padding: 8px 12px;
+    width: 110px;
+    height: 30px;
+    padding: 0 8px;
     font-size: 12px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page[data-page="leave"] .section {
+    text-align: center;
+}
+
+.page[data-page="leave"] .card {
+    border-radius: 16px;
+}
+
+.page[data-page="noticeboard"] .section {
+    text-align: center;
+}
+
+.page[data-page="noticeboard"] .card {
+    border-radius: 16px;
+}
+
+.page[data-page="task"] .section,
+.page[data-page="notes"] .section {
+    text-align: center;
+}
+
+.page[data-page="task"] .card,
+.page[data-page="notes"] .card {
+    border-radius: 16px;
+}
+
+.page[data-page="alerts"] .section {
+    text-align: center;
+}
+
+.page[data-page="alerts"] .card-grid {
+    justify-items: center;
+}
+
+.page[data-page="reminder"] .section {
+    text-align: center;
+}
+
+.page[data-page="halloffame"] .section {
+    text-align: center;
+}
+
+.page[data-page="profile"] .section {
+    text-align: center;
+}
+
+.page[data-page="profile"] .card-grid {
+    justify-items: center;
+}
+
+.page[data-page="notifications"] .section {
+    text-align: center;
+}
+
+.page[data-page="notifications"] .card-grid {
+    justify-items: center;
+}
+
+.card.compact .primary-btn:hover,
+.card.compact .primary-btn:active,
+.card.compact .primary-btn:focus {
+    background: #0080fc;
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 128, 252, 0.25);
+    transform: translateY(-2px);
+}
+
+.card.compact .primary-btn.hover-disabled:hover,
+.card.compact .primary-btn.hover-disabled:active,
+.card.compact .primary-btn.hover-disabled:focus {
+    background: inherit;
+    color: inherit;
+    border-color: inherit;
+    box-shadow: none;
+    transform: none;
 }
 
 .card.compact.work-start-card {
-    background: #FFF4E3 !important;
+    background: #0080FC!important;
     color: #000000 !important;
+    border-radius: 10px;
 }
 
 .card.compact.break-start-card {
-    background: #E6F5F1 !important;
+    background: #0080FC !important;
     color: #000000 !important;
+    border-radius: 10px;
 }
 
 .card.compact.break-end-card {
-    background: #E3F2FF !important;
+    background: #0080FC!important;
     color: #000000 !important;
+    border-radius: 10px;
 }
 
 .card.compact.work-end-card {
-    background: #F1ECFF!important;
+    background: #0080FC!important;
     color: #000000 !important;
+    border-radius: 10px;
 }
 
 .card.compact.work-start-card h2,
@@ -826,16 +921,18 @@ body {
 .card.compact.break-start-card .timestamp,
 .card.compact.break-end-card .timestamp,
 .card.compact.work-end-card .timestamp {
-    color: #000000 !important;
+    color: #ffffff !important;
 }
 
 .card.large {
     min-height: 260px;
+    margin-top: 20px;
 }
 
 .card.large.compact-large {
     min-height: 200px;
     padding: 16px;
+    border-radius: 16px;
 }
 
 .card.large.compact-large h2 {
@@ -860,20 +957,29 @@ body {
 }
 
 .primary-btn {
-    border: 0.5px solid #bfc5cc;
+    border: 1px solid #575757;
     border-radius: 8px;
     padding: 8px 22px;
-    --btn-bg: #ffffff;
+    --btn-bg: #f8f9fa;
     --btn-color: #000000;
     background: var(--btn-bg);
     color: var(--btn-color);
     font-weight: 600;
-    min-width: 96px;
+    width: max-content;
+    min-width: 0;
     cursor: pointer;
     opacity: 1;
     z-index: 1;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    margin: 0 auto;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.primary-btn.pending {
+    border-color: #ffffff;
+    color: #ffffff;
 }
 
 .primary-btn:hover,
@@ -881,7 +987,8 @@ body {
 .primary-btn:focus {
     background: #0080fc;
     color: #ffffff;
-    box-shadow: 0 12px 20px rgba(0, 128, 252, 0.25);
+    border-color: #0080fc;
+    box-shadow: 0 8px 16px rgba(0, 128, 252, 0.25);
     transform: translateY(-2px);
 }
 
@@ -889,19 +996,23 @@ body {
     outline: none;
 }
 
-.primary-btn.break-start-btn {
-    --btn-bg: #ffffff;
-    --btn-color: #000000;
-}
-
-.primary-btn.break-end-btn {
-    --btn-bg: #ffffff;
-    --btn-color: #000000;
-}
-
+.primary-btn.break-start-btn,
+.primary-btn.break-end-btn,
 .primary-btn.work-end-btn {
-    --btn-bg: #ffffff;
+    --btn-bg: transparent;
     --btn-color: #000000;
+}
+
+.primary-btn.leave-btn {
+    border: 1px solid #575757;
+    color: #000000;
+}
+
+.primary-btn.leave-btn:hover,
+.primary-btn.leave-btn:active,
+.primary-btn.leave-btn:focus {
+    background: #0080fc;
+    color: #ffffff;
 }
 
 .primary-btn:disabled {
