@@ -110,24 +110,24 @@
                 <section class="attendance-section">
                     <h1 class="section-title">Attendance</h1>
                     <div class="card-grid">
-                        <article class="card compact work-start-card">
+                        <article class="card compact attendance-card work-start-card" data-step="start">
                             <h2>Started Work</h2>
-                            <p class="timestamp" id="startTime">Not started</p>
+                            <p class="timestamp" id="startTime">--:--</p>
                         <button class="primary-btn hover-disabled" id="startWork">Start Work</button>
                         </article>
-                        <article class="card compact break-start-card">
+                        <article class="card compact attendance-card break-start-card" data-step="break-start">
                             <h2>Click to Start Break</h2>
-                            <p class="timestamp" id="startBreakTime">Not started</p>
+                            <p class="timestamp" id="startBreakTime">--:--</p>
                             <button class="primary-btn break-start-btn" id="startBreak">Start Break</button>
                         </article>
-                        <article class="card compact break-end-card">
+                        <article class="card compact attendance-card break-end-card" data-step="break-end">
                             <h2>Click to End Break</h2>
-                            <p class="timestamp" id="endBreakTime">Not ended</p>
+                            <p class="timestamp" id="endBreakTime">--:--</p>
                             <button class="primary-btn break-end-btn" id="endBreak">End Break</button>
                         </article>
-                        <article class="card compact work-end-card">
+                        <article class="card compact attendance-card work-end-card" data-step="end">
                             <h2>Click to End Work</h2>
-                            <p class="timestamp" id="endWorkTime">Not ended</p>
+                            <p class="timestamp" id="endWorkTime">--:--</p>
                             <button class="primary-btn work-end-btn" id="endWork">End Work</button>
                         </article>
                     </div>
@@ -314,28 +314,142 @@
             </section>
 
             <section class="page" data-page="halloffame">
-                <section class="section">
-                    <h1>Hall of Fame</h1>
-                    <p class="subtitle">Celebrate top performers and milestones.</p>
+                <section class="hof-hero-banner">
+                    <div class="hof-hero-content">
+                        <span class="hof-hero-kicker">GoProgs Technologies</span>
+                        <h1>Hall of Fame</h1>
+                        <p>Legends Who Set the Standard</p>
+                        <div class="hof-hero-tags">
+                            <span class="hof-tag">Gold</span>
+                            <span class="hof-tag">Silver</span>
+                            <span class="hof-tag">Bronze</span>
+                        </div>
+                    </div>
+                    <div class="hof-hero-portraits">
+                        <div class="hof-hero-card gold">
+                            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=220&q=80" alt="Ritika Sharma">
+                            <div>
+                                <strong>Ritika Sharma</strong>
+                                <span>Employee of the Month</span>
+                            </div>
+                        </div>
+                        <div class="hof-hero-card silver">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=220&q=80" alt="Imran Malik">
+                            <div>
+                                <strong>Imran Malik</strong>
+                                <span>Best Performer</span>
+                            </div>
+                        </div>
+                        <div class="hof-hero-card bronze">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=220&q=80" alt="Neha Patel">
+                            <div>
+                                <strong>Neha Patel</strong>
+                                <span>Customer Hero</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hof-sparkles" aria-hidden="true"></div>
                 </section>
-                <section class="card-grid two-column">
-                    <article class="card large">
-                        <h2>Top Performers</h2>
-                        <ul class="list">
-                            <li><span>Ritika Sharma</span><span class="tag">Employee of the Month</span></li>
-                            <li><span>Imran Malik</span><span class="tag">Sales Champion</span></li>
-                            <li><span>Neha Patel</span><span class="tag">Customer Hero</span></li>
-                        </ul>
-                    </article>
-                    <article class="card">
-                        <h2>Achievements</h2>
-                        <ul class="list">
-                            <li><span>50 projects delivered</span><span class="tag">2024</span></li>
-                            <li><span>100% compliance audit</span><span class="tag">Q2</span></li>
-                            <li><span>Client satisfaction 4.9/5</span><span class="tag">Latest</span></li>
-                        </ul>
-                    </article>
+
+                <section class="hof-filters">
+                    <button class="hof-filter active" data-filter="all" type="button">All</button>
+                    <button class="hof-filter" data-filter="month" type="button">This Month</button>
+                    <button class="hof-filter" data-filter="year" type="button">This Year</button>
+                    <button class="hof-filter" data-filter="innovation" type="button">Innovation</button>
+                    <button class="hof-filter" data-filter="customer" type="button">Customer</button>
                 </section>
+
+                <section class="hof-spotlight">
+                    <h2>Spotlight Champions</h2>
+                    <div class="hof-spotlight-grid">
+                        <article class="hof-spotlight-card" data-category="month" data-story="Ritika delivered a 35 percent improvement in onboarding speed through a redesigned workflow.">
+                            <div class="hof-frame gold">
+                                <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=240&q=80" alt="Ritika Sharma">
+                            </div>
+                            <div class="hof-spotlight-info">
+                                <h3>Ritika Sharma</h3>
+                                <p>Product Operations</p>
+                                <span class="hof-award-label">Employee of the Month</span>
+                            </div>
+                        </article>
+                        <article class="hof-spotlight-card" data-category="year" data-story="Imran secured strategic renewals and lifted partner growth by 28 percent.">
+                            <div class="hof-frame silver">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=240&q=80" alt="Imran Malik">
+                            </div>
+                            <div class="hof-spotlight-info">
+                                <h3>Imran Malik</h3>
+                                <p>Sales & Partnerships</p>
+                                <span class="hof-award-label">Best Performer</span>
+                            </div>
+                        </article>
+                        <article class="hof-spotlight-card" data-category="customer" data-story="Neha maintained a 4.9 CSAT and led VIP retention programs.">
+                            <div class="hof-frame bronze">
+                                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=240&q=80" alt="Neha Patel">
+                            </div>
+                            <div class="hof-spotlight-info">
+                                <h3>Neha Patel</h3>
+                                <p>Customer Success</p>
+                                <span class="hof-award-label">Customer Hero</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="hof-gallery">
+                    <h2>Achievement Gallery</h2>
+                    <div class="hof-gallery-grid">
+                        <article class="hof-tile" data-category="innovation" data-story="Ayesha automated QA pipelines, reducing release cycles by 35 percent.">
+                            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=220&q=80" alt="Ayesha Khan">
+                            <div class="hof-tile-info">
+                                <strong>Ayesha Khan</strong>
+                                <span>Innovation Champion</span>
+                            </div>
+                        </article>
+                        <article class="hof-tile" data-category="year" data-story="Vikram delivered a savings plan improving budget utilization by 18 percent.">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=220&q=80" alt="Vikram Rao">
+                            <div class="hof-tile-info">
+                                <strong>Vikram Rao</strong>
+                                <span>Cost Optimization</span>
+                            </div>
+                        </article>
+                        <article class="hof-tile" data-category="month" data-story="Karan refined the brand system for premium multi-channel cohesion.">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=220&q=80" alt="Karan Mehta">
+                            <div class="hof-tile-info">
+                                <strong>Karan Mehta</strong>
+                                <span>Brand Excellence</span>
+                            </div>
+                        </article>
+                        <article class="hof-tile" data-category="customer" data-story="Anita expanded retention playbooks with tailored enterprise care.">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=220&q=80" alt="Anita Desai">
+                            <div class="hof-tile-info">
+                                <strong>Anita Desai</strong>
+                                <span>Customer Champion</span>
+                            </div>
+                        </article>
+                        <article class="hof-tile" data-category="innovation" data-story="Sanjay launched a data initiative that cut reporting time by 42 percent.">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=220&q=80" alt="Sanjay Iyer">
+                            <div class="hof-tile-info">
+                                <strong>Sanjay Iyer</strong>
+                                <span>Data Visionary</span>
+                            </div>
+                        </article>
+                        <article class="hof-tile" data-category="year" data-story="Priya led a compliance transformation with zero audit findings.">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=220&q=80" alt="Priya Singh">
+                            <div class="hof-tile-info">
+                                <strong>Priya Singh</strong>
+                                <span>Compliance Lead</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <div class="hof-modal" id="hofModal" role="dialog" aria-modal="true" hidden>
+                    <div class="hof-modal-card">
+                        <button class="hof-modal-close" id="hofModalClose" type="button">Close</button>
+                        <h3 id="hofModalTitle">Achievement Story</h3>
+                        <p id="hofModalStory"></p>
+                    </div>
+                </div>
             </section>
 
             <section class="page" data-page="calendar">

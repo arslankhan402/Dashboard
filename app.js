@@ -27,6 +27,13 @@ const profileImageInput = document.querySelector("#profileImage");
 const profileNameDisplay = document.querySelector("#profileNameDisplay");
 const profileRoleDisplay = document.querySelector("#profileRoleDisplay");
 const profilePhoto = document.querySelector("#profilePhoto");
+const hofFilters = document.querySelectorAll(".hof-filter");
+const hofSpotlightCards = document.querySelectorAll(".hof-spotlight-card");
+const hofTiles = document.querySelectorAll(".hof-tile");
+const hofModal = document.querySelector("#hofModal");
+const hofModalClose = document.querySelector("#hofModalClose");
+const hofModalTitle = document.querySelector("#hofModalTitle");
+const hofModalStory = document.querySelector("#hofModalStory");
 
 const startWorkBtn = document.querySelector("#startWork");
 const startBreakBtn = document.querySelector("#startBreak");
@@ -114,10 +121,7 @@ function setStoredSignIn(value) {
 function formatTime(date) {
     return date.toLocaleString(undefined, {
         hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        month: "short",
-        day: "numeric"
+        minute: "2-digit"
     });
 }
 
@@ -135,13 +139,27 @@ function updateButtons() {
     startBreakBtn.disabled = !state.workStarted || state.breakStarted || state.workEnded;
     endBreakBtn.disabled = !state.breakStarted || state.breakEnded;
     endWorkBtn.disabled = !state.workStarted || state.workEnded || !state.breakEnded && state.breakStarted;
-    const pendingButtons = [startBreakBtn, endBreakBtn, endWorkBtn].filter(Boolean);
-    pendingButtons.forEach(btn => btn.classList.remove("pending"));
-    if (state.workStarted && !state.workEnded) {
-        pendingButtons
-            .filter(btn => !btn.disabled)
-            .forEach(btn => btn.classList.add("pending"));
-    }
+    const steps = [
+        { card: document.querySelector(".work-start-card"), done: state.workStarted },
+        { card: document.querySelector(".break-start-card"), done: state.breakStarted },
+        { card: document.querySelector(".break-end-card"), done: state.breakEnded },
+        { card: document.querySelector(".work-end-card"), done: state.workEnded }
+    ];
+
+    steps.forEach((step, index) => {
+        if (!step.card) return;
+        step.card.classList.remove("completed", "active", "pending");
+        if (step.done) {
+            step.card.classList.add("completed");
+            return;
+        }
+        const previousComplete = steps.slice(0, index).every(prev => prev.done);
+        if (previousComplete) {
+            step.card.classList.add("active");
+        } else {
+            step.card.classList.add("pending");
+        }
+    });
 }
 
 function renderCalendar(date) {
@@ -415,6 +433,57 @@ renderNotifications();
 updateNotificationDots();
 renderAllNotifications();
 applyProfile(getStoredProfile());
+
+function openHofModal(title, story) {
+    if (!hofModal || !hofModalTitle || !hofModalStory) return;
+    hofModalTitle.textContent = title;
+    hofModalStory.textContent = story;
+    hofModal.hidden = false;
+    hofModal.classList.add("show");
+}
+
+function closeHofModal() {
+    if (!hofModal) return;
+    hofModal.classList.remove("show");
+    hofModal.hidden = true;
+}
+
+hofFilters.forEach(filter => {
+    filter.addEventListener("click", () => {
+        hofFilters.forEach(btn => btn.classList.remove("active"));
+        filter.classList.add("active");
+        const key = filter.dataset.filter;
+        const allCards = [...hofSpotlightCards, ...hofTiles];
+        allCards.forEach(card => {
+            if (key === "all") {
+                card.style.display = "";
+                return;
+            }
+            const category = card.dataset.category;
+            card.style.display = category === key ? "" : "none";
+        });
+    });
+});
+
+[...hofSpotlightCards, ...hofTiles].forEach(card => {
+    card.addEventListener("click", () => {
+        const name = card.querySelector("h3, strong");
+        const story = card.dataset.story || "Achievement details are being updated.";
+        openHofModal(name ? name.textContent : "Achievement Story", story);
+    });
+});
+
+if (hofModalClose) {
+    hofModalClose.addEventListener("click", closeHofModal);
+}
+
+if (hofModal) {
+    hofModal.addEventListener("click", event => {
+        if (event.target === hofModal) {
+            closeHofModal();
+        }
+    });
+}
 
 if (profileForm) {
     profileForm.addEventListener("submit", event => {
