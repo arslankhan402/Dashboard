@@ -156,160 +156,550 @@
             </section>
 
             <section class="page" data-page="leave">
-                <section class="section">
+                <section class="section leave-header">
                     <h1>Leave Management</h1>
-                    <p class="subtitle">Apply, track, and approve leave requests.</p>
+                    <p class="subtitle">Apply, track, and manage your leave requests in one place.</p>
                 </section>
-                <section class="card-grid two-column">
-                    <article class="card">
-                        <h2>Request Leave</h2>
-                        <div class="form">
-                            <label>Leave type</label>
-                            <select>
+                <section class="leave-summary">
+                    <article class="leave-card">
+                        <p>Total Leaves</p>
+                        <h3>24</h3>
+                        <span>Annual quota</span>
+                    </article>
+                    <article class="leave-card">
+                        <p>Used Leaves</p>
+                        <h3>10</h3>
+                        <span>Approved & taken</span>
+                    </article>
+                    <article class="leave-card">
+                        <p>Remaining Leaves</p>
+                        <h3>14</h3>
+                        <span>Balance available</span>
+                    </article>
+                    <article class="leave-card">
+                        <p>Pending Requests</p>
+                        <h3>2</h3>
+                        <span>Awaiting approval</span>
+                    </article>
+                </section>
+                <section class="leave-grid">
+                    <article class="card leave-form-card">
+                        <h2>Apply for Leave</h2>
+                        <div class="form leave-form">
+                            <label for="leaveType">Leave type</label>
+                            <select id="leaveType">
                                 <option>Annual Leave</option>
                                 <option>Sick Leave</option>
                                 <option>Work From Home</option>
+                                <option>Emergency Leave</option>
                             </select>
-                            <label>From - To</label>
-                            <input type="text" placeholder="Aug 20 - Aug 22">
-                            <button class="primary-btn leave-btn">Submit Request</button>
+                            <div class="leave-dates">
+                                <div>
+                                    <label for="leaveFrom">From</label>
+                                    <input id="leaveFrom" type="date">
+                                </div>
+                                <div>
+                                    <label for="leaveTo">To</label>
+                                    <input id="leaveTo" type="date">
+                                </div>
+                            </div>
+                            <label for="leaveReason">Reason</label>
+                            <textarea id="leaveReason" rows="4" placeholder="Add a short reason for your leave request"></textarea>
+                            <button class="primary-btn leave-btn">Apply Leave</button>
                         </div>
                     </article>
-                    <article class="card">
+                    <article class="card leave-balance-card">
                         <h2>Leave Balance</h2>
                         <ul class="list">
                             <li><span>Annual Leave</span><span class="tag">12 days</span></li>
                             <li><span>Sick Leave</span><span class="tag">6 days</span></li>
                             <li><span>WFH Days</span><span class="tag">4 days</span></li>
+                            <li><span>Emergency Leave</span><span class="tag">2 days</span></li>
                         </ul>
                     </article>
+                </section>
+                <section class="card leave-history-card">
+                    <h2>Leave Requests History</h2>
+                    <div class="leave-table">
+                        <div class="leave-row leave-head">
+                            <span>Date Range</span>
+                            <span>Leave Type</span>
+                            <span>Status</span>
+                            <span>Action</span>
+                        </div>
+                        <div class="leave-row">
+                            <span>Aug 12 - Aug 14</span>
+                            <span>Annual Leave</span>
+                            <span class="status-badge approved">Approved</span>
+                            <button class="link-btn">View</button>
+                        </div>
+                        <div class="leave-row">
+                            <span>Aug 22 - Aug 23</span>
+                            <span>Sick Leave</span>
+                            <span class="status-badge pending">Pending</span>
+                            <button class="link-btn">Edit</button>
+                        </div>
+                        <div class="leave-row">
+                            <span>Aug 05 - Aug 05</span>
+                            <span>Work From Home</span>
+                            <span class="status-badge rejected">Rejected</span>
+                            <button class="link-btn">Details</button>
+                        </div>
+                    </div>
                 </section>
             </section>
 
             <section class="page" data-page="noticeboard">
-                <section class="section">
+                <section class="section notice-header">
                     <h1>Noticeboard</h1>
-                    <p class="subtitle">Company updates and internal announcements.</p>
+                    <p class="subtitle">Company updates, announcements, and important notices.</p>
                 </section>
-                <section class="card-grid two-column">
-                    <article class="card large">
-                        <h2>Latest Notices</h2>
-                        <ul class="list">
-                            <li><span>Policy update: remote work guidelines</span><span class="tag">Today</span></li>
-                            <li><span>Office maintenance scheduled</span><span class="tag">Aug 19</span></li>
-                            <li><span>Employee wellness program launch</span><span class="tag">Aug 15</span></li>
-                        </ul>
+                <section class="notice-featured">
+                    <article class="notice-banner notice-card pinned" data-title="Remote Work Policy Update" data-date="Aug 20, 2026" data-tag="HR" data-content="The updated remote work policy is now live. Please review new expectations around availability, security, and check-ins.">
+                        <div>
+                            <p class="notice-kicker">Important Notice</p>
+                            <h2>Remote Work Policy Update</h2>
+                            <p>Updated guidelines for hybrid schedules, availability windows, and security protocols.</p>
+                        </div>
+                        <div class="notice-meta">
+                            <span class="badge urgent">Important</span>
+                            <span>Aug 20, 2026</span>
+                        </div>
                     </article>
-                    <article class="card">
-                        <h2>Quick Links</h2>
-                        <ul class="list">
-                            <li><span>HR handbook</span><span class="tag">PDF</span></li>
-                            <li><span>IT support portal</span><span class="tag">Open</span></li>
-                            <li><span>Travel policy</span><span class="tag">PDF</span></li>
-                        </ul>
+                    <article class="notice-banner notice-card" data-title="Office Maintenance Window" data-date="Aug 22, 2026" data-tag="General" data-content="Facilities will be performing maintenance on the 5th floor. Expect minor noise and limited access between 2 PM and 5 PM.">
+                        <div>
+                            <p class="notice-kicker">Facilities</p>
+                            <h2>Office Maintenance Window</h2>
+                            <p>Limited access to the 5th floor on Friday afternoon. Plan meetings accordingly.</p>
+                        </div>
+                        <div class="notice-meta">
+                            <span class="badge new">New</span>
+                            <span>Aug 22, 2026</span>
+                        </div>
                     </article>
+                </section>
+                <section class="notice-pinned">
+                    <h2>Pinned Notices</h2>
+                    <div class="notice-grid">
+                        <article class="notice-card pinned" data-title="Holiday Schedule Released" data-date="Aug 18, 2026" data-tag="Holiday" data-content="The 2026 holiday calendar is available. Submit any planned leave requests early to secure approval.">
+                            <div class="notice-header-row">
+                                <span class="badge pinned-badge">Pinned</span>
+                                <span class="badge category">Holiday</span>
+                            </div>
+                            <h3>Holiday Schedule Released</h3>
+                            <p>Review the upcoming holiday calendar and plan your leaves in advance.</p>
+                            <div class="notice-footer">
+                                <span>Aug 18, 2026</span>
+                                <span class="priority">Priority: Medium</span>
+                            </div>
+                        </article>
+                        <article class="notice-card pinned" data-title="Q3 Townhall Announced" data-date="Aug 25, 2026" data-tag="Update" data-content="Join the Q3 Townhall for leadership updates, performance highlights, and upcoming initiatives. Submit questions ahead of time.">
+                            <div class="notice-header-row">
+                                <span class="badge pinned-badge">Pinned</span>
+                                <span class="badge category">Update</span>
+                            </div>
+                            <h3>Q3 Townhall Announced</h3>
+                            <p>Leadership will share Q3 results and answer team questions.</p>
+                            <div class="notice-footer">
+                                <span>Aug 25, 2026</span>
+                                <span class="priority">Priority: High</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                <section class="notice-feed">
+                    <h2>All Notices</h2>
+                    <div class="notice-list">
+                        <article class="notice-card" data-title="Wellness Program Launch" data-date="Aug 15, 2026" data-tag="HR" data-content="Wellness benefits now include monthly sessions, mental health resources, and fitness reimbursements.">
+                            <div class="notice-header-row">
+                                <span class="badge category">HR</span>
+                                <span class="badge archived">Archived</span>
+                            </div>
+                            <h3>Wellness Program Launch</h3>
+                            <p>New wellness initiatives are now open for enrollment.</p>
+                            <div class="notice-footer">
+                                <span>Aug 15, 2026</span>
+                                <span class="priority">Priority: Low</span>
+                            </div>
+                        </article>
+                        <article class="notice-card" data-title="Security Training Reminder" data-date="Aug 19, 2026" data-tag="Update" data-content="Complete the annual security training by the end of this month to remain compliant.">
+                            <div class="notice-header-row">
+                                <span class="badge category">Update</span>
+                                <span class="badge new">New</span>
+                            </div>
+                            <h3>Security Training Reminder</h3>
+                            <p>Mandatory security refresher due by Aug 31.</p>
+                            <div class="notice-footer">
+                                <span>Aug 19, 2026</span>
+                                <span class="priority">Priority: Medium</span>
+                            </div>
+                        </article>
+                        <article class="notice-card" data-title="Payroll Timeline Shift" data-date="Aug 12, 2026" data-tag="General" data-content="Payroll processing will occur one day earlier this month due to the public holiday.">
+                            <div class="notice-header-row">
+                                <span class="badge category">General</span>
+                                <span class="badge new">New</span>
+                            </div>
+                            <h3>Payroll Timeline Shift</h3>
+                            <p>Payroll will be processed early this month. Check your payslips.</p>
+                            <div class="notice-footer">
+                                <span>Aug 12, 2026</span>
+                                <span class="priority">Priority: High</span>
+                            </div>
+                        </article>
+                        <article class="notice-card" data-title="Employee Recognition Nominations" data-date="Aug 10, 2026" data-tag="HR" data-content="Submit nominations for the next Employee Recognition cycle. Highlight impactful contributions.">
+                            <div class="notice-header-row">
+                                <span class="badge category">HR</span>
+                                <span class="badge archived">Archived</span>
+                            </div>
+                            <h3>Employee Recognition Nominations</h3>
+                            <p>Nominations are open for the next recognition cycle.</p>
+                            <div class="notice-footer">
+                                <span>Aug 10, 2026</span>
+                                <span class="priority">Priority: Low</span>
+                            </div>
+                        </article>
+                    </div>
                 </section>
             </section>
 
             <section class="page" data-page="task">
-                <section class="section">
-                    <h1>Task Center</h1>
-                    <p class="subtitle">Track tasks assigned by your managers.</p>
+                <section class="section task-header">
+                    <h1>My Tasks</h1>
+                    <p class="subtitle">Manage daily work efficiently with clear priorities and progress.</p>
+                    <div class="task-divider"></div>
                 </section>
-                <section class="card-grid">
-                    <article class="card large">
-                        <h2>Active Tasks</h2>
-                        <ul class="list">
-                            <li><span>Prepare monthly KPI dashboard</span><span class="tag">Due Aug 21</span></li>
-                            <li><span>Client feedback compilation</span><span class="tag">In review</span></li>
-                            <li><span>Process payroll approvals</span><span class="tag">Due Aug 23</span></li>
-                        </ul>
-                    </article>
-                    <article class="card">
-                        <h2>Create Task</h2>
-                        <div class="form">
-                            <label>Task name</label>
-                            <input type="text" placeholder="Enter task title">
-                            <label>Priority</label>
-                            <select>
-                                <option>High</option>
-                                <option>Medium</option>
-                                <option>Low</option>
-                            </select>
-                            <button class="primary-btn">Add Task</button>
+                <section class="task-filters" role="tablist" aria-label="Task filters">
+                    <button class="task-filter active" data-filter="all" type="button">All</button>
+                    <button class="task-filter" data-filter="today" type="button">Today</button>
+                    <button class="task-filter" data-filter="upcoming" type="button">Upcoming</button>
+                    <button class="task-filter" data-filter="completed" type="button">Completed</button>
+                </section>
+                <section class="task-timeline">
+                    <article class="task-item" data-filter="today" data-title="Finalize Q3 performance report" data-priority="High" data-date="Aug 21, 2026" data-status="Today" data-description="Compile KPI dashboards, insights, and recommendations for the leadership review.">
+                        <div class="task-accent"></div>
+                        <div class="task-main">
+                            <div class="task-title-row">
+                                <h2>Finalize Q3 performance report</h2>
+                                <span class="task-status">Today</span>
+                            </div>
+                            <p>Compile KPI dashboards, insights, and recommendations for the leadership review.</p>
+                            <div class="task-meta">
+                                <span class="task-date"><i class="bi bi-calendar-event"></i> Aug 21</span>
+                                <span class="priority-dot high">High</span>
+                                <span class="task-progress"><span style="width: 45%"></span></span>
+                            </div>
                         </div>
+                        <div class="task-actions"></div>
+                    </article>
+                    <article class="task-item" data-filter="today" data-title="Prepare payroll approvals" data-priority="Medium" data-date="Aug 21, 2026" data-status="Today" data-description="Verify payroll items and prepare approvals with finance.">
+                        <div class="task-accent"></div>
+                        <div class="task-main">
+                            <div class="task-title-row">
+                                <h2>Prepare payroll approvals</h2>
+                                <span class="task-status">Today</span>
+                            </div>
+                            <p>Verify payroll items and prepare approvals with finance.</p>
+                            <div class="task-meta">
+                                <span class="task-date"><i class="bi bi-calendar-event"></i> Aug 21</span>
+                                <span class="priority-dot medium">Medium</span>
+                                <span class="task-progress"><span style="width: 60%"></span></span>
+                            </div>
+                        </div>
+                        <div class="task-actions"></div>
+                    </article>
+                    <article class="task-item" data-filter="upcoming" data-title="Update onboarding checklist" data-priority="Low" data-date="Aug 26, 2026" data-status="Upcoming" data-description="Refresh onboarding checklist for new hires and share with HR.">
+                        <div class="task-accent"></div>
+                        <div class="task-main">
+                            <div class="task-title-row">
+                                <h2>Update onboarding checklist</h2>
+                                <span class="task-status">Upcoming</span>
+                            </div>
+                            <p>Refresh onboarding checklist for new hires and share with HR.</p>
+                            <div class="task-meta">
+                                <span class="task-date"><i class="bi bi-calendar-event"></i> Aug 26</span>
+                                <span class="priority-dot low">Low</span>
+                                <span class="task-progress"><span style="width: 20%"></span></span>
+                            </div>
+                        </div>
+                        <div class="task-actions"></div>
+                    </article>
+                    <article class="task-item completed" data-filter="completed" data-title="Coordinate client follow-up" data-priority="Medium" data-date="Aug 15, 2026" data-status="Completed" data-description="Followed up with the client team and documented next steps.">
+                        <div class="task-accent"></div>
+                        <div class="task-main">
+                            <div class="task-title-row">
+                                <h2>Coordinate client follow-up</h2>
+                                <span class="task-status">Completed</span>
+                            </div>
+                            <p>Documented next steps and shared summary.</p>
+                            <div class="task-meta">
+                                <span class="task-date"><i class="bi bi-calendar-event"></i> Aug 15</span>
+                                <span class="priority-dot medium">Medium</span>
+                                <span class="task-progress"><span style="width: 100%"></span></span>
+                            </div>
+                        </div>
+                        <div class="task-actions"></div>
                     </article>
                 </section>
             </section>
 
             <section class="page" data-page="notes">
-                <section class="section">
-                    <h1>Notes</h1>
-                    <p class="subtitle">Capture quick notes and key reminders.</p>
+                <section class="section notes-header">
+                    <h1>My Notes</h1>
+                    <p class="subtitle">Personal notes, ideas, and reminders in one calm space.</p>
                 </section>
-                <section class="card-grid two-column">
-                    <article class="card large">
-                        <h2>Recent Notes</h2>
-                        <ul class="list">
-                            <li><span>Client call action items</span><span class="tag">Updated</span></li>
-                            <li><span>Budget planning highlights</span><span class="tag">Draft</span></li>
-                            <li><span>Onboarding checklist updates</span><span class="tag">Shared</span></li>
-                        </ul>
-                    </article>
-                    <article class="card">
-                        <h2>Add a Note</h2>
-                        <div class="form">
-                            <label>Title</label>
-                            <input type="text" placeholder="Note title">
-                            <label>Summary</label>
-                            <input type="text" placeholder="Short summary">
-                            <button class="primary-btn">Save Note</button>
+                <section class="notes-add">
+                    <article class="note-compose">
+                        <h2>Quick Add Note</h2>
+                        <div class="form note-form">
+                            <label for="noteTitle">Note title</label>
+                            <input id="noteTitle" type="text" placeholder="Add a short title">
+                            <label for="noteBody">Note content</label>
+                            <textarea id="noteBody" rows="5" placeholder="Write your note here..."></textarea>
+                            <button class="primary-btn note-btn" type="button">Save Note</button>
                         </div>
+                    </article>
+                </section>
+                <section class="notes-grid">
+                    <article class="note-card pinned" data-title="Client call action items" data-date="Aug 20, 2026" data-content="Send recap notes, update CRM fields, and follow up on requested pricing.">
+                        <div class="note-card-header">
+                            <h3>Client call action items</h3>
+                            <div class="note-actions">
+                                <button type="button" aria-label="Pin note"><i class="bi bi-pin-angle-fill"></i></button>
+                                <button type="button" aria-label="Edit note"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" aria-label="Delete note"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                        <p>Send recap notes, update CRM fields, and follow up on requested pricing.</p>
+                        <span class="note-date">Aug 20, 2026</span>
+                    </article>
+                    <article class="note-card" data-title="Budget planning highlights" data-date="Aug 18, 2026" data-content="Focus on reducing vendor costs, renegotiate recurring tools, and push usage tracking.">
+                        <div class="note-card-header">
+                            <h3>Budget planning highlights</h3>
+                            <div class="note-actions">
+                                <button type="button" aria-label="Pin note"><i class="bi bi-pin-angle"></i></button>
+                                <button type="button" aria-label="Edit note"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" aria-label="Delete note"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                        <p>Focus on reducing vendor costs, renegotiate recurring tools, and push usage tracking.</p>
+                        <span class="note-date">Aug 18, 2026</span>
+                    </article>
+                    <article class="note-card" data-title="Onboarding checklist updates" data-date="Aug 16, 2026" data-content="Update device setup steps, add security training links, and streamline buddy assignments.">
+                        <div class="note-card-header">
+                            <h3>Onboarding checklist updates</h3>
+                            <div class="note-actions">
+                                <button type="button" aria-label="Pin note"><i class="bi bi-pin-angle"></i></button>
+                                <button type="button" aria-label="Edit note"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" aria-label="Delete note"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                        <p>Update device setup steps, add security training links, and streamline buddy assignments.</p>
+                        <span class="note-date">Aug 16, 2026</span>
+                    </article>
+                    <article class="note-card" data-title="Leadership offsite ideas" data-date="Aug 12, 2026" data-content="Workshop on long-term vision, team cohesion exercises, and customer immersion sessions.">
+                        <div class="note-card-header">
+                            <h3>Leadership offsite ideas</h3>
+                            <div class="note-actions">
+                                <button type="button" aria-label="Pin note"><i class="bi bi-pin-angle"></i></button>
+                                <button type="button" aria-label="Edit note"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" aria-label="Delete note"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                        <p>Workshop on long-term vision, team cohesion exercises, and customer immersion sessions.</p>
+                        <span class="note-date">Aug 12, 2026</span>
                     </article>
                 </section>
             </section>
 
             <section class="page" data-page="alerts">
-                <section class="section">
+                <section class="section alerts-header">
                     <h1>Alerts</h1>
-                    <p class="subtitle">Critical notifications that need attention.</p>
+                    <p class="subtitle">Important system messages and reminders that need attention.</p>
                 </section>
-                <section class="card-grid">
-                    <article class="card large">
-                        <h2>Active Alerts</h2>
-                        <ul class="list">
-                            <li><span>Pending approval for expense report</span><span class="tag">Action required</span></li>
-                            <li><span>Security update available</span><span class="tag">Review</span></li>
-                            <li><span>Overdue follow-up for client A</span><span class="tag">High</span></li>
-                        </ul>
+                <section class="alert-summary">
+                    <article class="alert-chip critical">
+                        <span>Critical</span>
+                        <strong>2</strong>
+                    </article>
+                    <article class="alert-chip warning">
+                        <span>Warning</span>
+                        <strong>5</strong>
+                    </article>
+                    <article class="alert-chip info">
+                        <span>Info</span>
+                        <strong>8</strong>
+                    </article>
+                </section>
+                <section class="alert-feed">
+                    <article class="alert-card critical actionable" data-title="Security patch required" data-priority="Critical" data-date="Today, 9:10 AM" data-description="Apply the latest server security patch to prevent vulnerabilities.">
+                        <div class="alert-accent"></div>
+                        <div class="alert-content">
+                            <div class="alert-title-row">
+                                <h2>Security patch required</h2>
+                                <span class="alert-badge critical">Critical</span>
+                            </div>
+                            <p>Apply the latest server security patch to prevent vulnerabilities.</p>
+                            <div class="alert-meta">
+                                <span><i class="bi bi-clock"></i> Today, 9:10 AM</span>
+                                <span class="alert-icon"><i class="bi bi-shield-exclamation"></i></span>
+                            </div>
+                        </div>
+                        <div class="alert-actions"></div>
+                    </article>
+                    <article class="alert-card warning actionable" data-title="Payroll approval pending" data-priority="Warning" data-date="Today, 8:40 AM" data-description="Finance requires approval for the payroll batch before processing.">
+                        <div class="alert-accent"></div>
+                        <div class="alert-content">
+                            <div class="alert-title-row">
+                                <h2>Payroll approval pending</h2>
+                                <span class="alert-badge warning">Warning</span>
+                            </div>
+                            <p>Finance requires approval for the payroll batch before processing.</p>
+                            <div class="alert-meta">
+                                <span><i class="bi bi-clock"></i> Today, 8:40 AM</span>
+                                <span class="alert-icon"><i class="bi bi-cash-coin"></i></span>
+                            </div>
+                        </div>
+                        <div class="alert-actions"></div>
+                    </article>
+                    <article class="alert-card info" data-title="Team feedback survey due" data-priority="Info" data-date="Yesterday, 4:20 PM" data-description="Complete the weekly feedback survey to share your input.">
+                        <div class="alert-accent"></div>
+                        <div class="alert-content">
+                            <div class="alert-title-row">
+                                <h2>Team feedback survey due</h2>
+                                <span class="alert-badge info">Info</span>
+                            </div>
+                            <p>Complete the weekly feedback survey to share your input.</p>
+                            <div class="alert-meta">
+                                <span><i class="bi bi-clock"></i> Yesterday, 4:20 PM</span>
+                                <span class="alert-icon"><i class="bi bi-chat-left-dots"></i></span>
+                            </div>
+                        </div>
+                        <div class="alert-actions"></div>
+                    </article>
+                    <article class="alert-card warning" data-title="System update scheduled" data-priority="Warning" data-date="Aug 19, 6:00 PM" data-description="Scheduled maintenance will run after business hours. Save your work ahead of time.">
+                        <div class="alert-accent"></div>
+                        <div class="alert-content">
+                            <div class="alert-title-row">
+                                <h2>System update scheduled</h2>
+                                <span class="alert-badge warning">Warning</span>
+                            </div>
+                            <p>Scheduled maintenance will run after business hours. Save your work ahead of time.</p>
+                            <div class="alert-meta">
+                                <span><i class="bi bi-clock"></i> Aug 19, 6:00 PM</span>
+                                <span class="alert-icon"><i class="bi bi-gear"></i></span>
+                            </div>
+                        </div>
+                        <div class="alert-actions"></div>
                     </article>
                 </section>
             </section>
 
             <section class="page" data-page="reminder">
-                <section class="section">
-                    <h1>Reminder Center</h1>
-                    <p class="subtitle">Stay on top of scheduled actions.</p>
+                <section class="section reminder-header">
+                    <h1>Reminders</h1>
+                    <p class="subtitle">Never miss an important task or follow-up.</p>
                 </section>
-                <section class="card-grid two-column">
-                    <article class="card">
-                        <h2>Set Reminder</h2>
-                        <div class="form">
-                            <label>Reminder</label>
-                            <input type="text" placeholder="Submit timesheet">
-                            <label>Date</label>
-                            <input type="text" placeholder="Aug 24, 09:00 AM">
-                            <button class="primary-btn">Create Reminder</button>
+                <section class="reminder-layout">
+                    <div class="reminder-main">
+                        <div class="reminder-toolbar">
+                            <h2>Upcoming Reminders</h2>
+                            <button class="reminder-filter" data-date="all" type="button">All Dates</button>
                         </div>
-                    </article>
-                    <article class="card">
-                        <h2>Upcoming Reminders</h2>
-                        <ul class="list">
-                            <li><span>Submit weekly report</span><span class="tag">Tomorrow</span></li>
-                            <li><span>Payroll review meeting</span><span class="tag">Aug 25</span></li>
-                            <li><span>Renew team access passes</span><span class="tag">Aug 28</span></li>
-                        </ul>
-                    </article>
+                        <div class="reminder-feed">
+                            <article class="reminder-card" data-date="2026-08-21">
+                                <div class="reminder-accent"></div>
+                                <div class="reminder-body">
+                                    <div class="reminder-title-row">
+                                        <h3>Submit weekly report</h3>
+                                        <span class="reminder-status upcoming">Upcoming</span>
+                                    </div>
+                                    <p>Finalize weekly summary and share with the leadership team.</p>
+                                    <div class="reminder-meta">
+                                        <span><i class="bi bi-clock"></i> Aug 21, 9:00 AM</span>
+                                        <span class="priority-dot high">High</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="reminder-card" data-date="2026-08-22">
+                                <div class="reminder-accent"></div>
+                                <div class="reminder-body">
+                                    <div class="reminder-title-row">
+                                        <h3>Payroll review meeting</h3>
+                                        <span class="reminder-status due-soon">Due Soon</span>
+                                    </div>
+                                    <p>Review payroll batch and confirm approvals with finance.</p>
+                                    <div class="reminder-meta">
+                                        <span><i class="bi bi-clock"></i> Aug 22, 2:00 PM</span>
+                                        <span class="priority-dot medium">Medium</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="reminder-card" data-date="2026-08-24">
+                                <div class="reminder-accent"></div>
+                                <div class="reminder-body">
+                                    <div class="reminder-title-row">
+                                        <h3>Renew team access passes</h3>
+                                        <span class="reminder-status upcoming">Upcoming</span>
+                                    </div>
+                                    <p>Coordinate access pass renewal with the security team.</p>
+                                    <div class="reminder-meta">
+                                        <span><i class="bi bi-clock"></i> Aug 24, 11:30 AM</span>
+                                        <span class="priority-dot low">Low</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="reminder-card completed" data-date="2026-08-18">
+                                <div class="reminder-accent"></div>
+                                <div class="reminder-body">
+                                    <div class="reminder-title-row">
+                                        <h3>Client follow-up email</h3>
+                                        <span class="reminder-status completed">Completed</span>
+                                    </div>
+                                    <p>Send follow-up email with updated proposal timeline.</p>
+                                    <div class="reminder-meta">
+                                        <span><i class="bi bi-clock"></i> Aug 18, 4:00 PM</span>
+                                        <span class="priority-dot medium">Medium</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <aside class="reminder-side">
+                        <article class="reminder-form-card">
+                            <h2>Quick Add Reminder</h2>
+                            <div class="form reminder-form">
+                                <label for="reminderTitle">Reminder title</label>
+                                <input id="reminderTitle" type="text" placeholder="Add reminder title">
+                                <div class="reminder-fields">
+                                    <div>
+                                        <label for="reminderDate">Date</label>
+                                        <input id="reminderDate" type="date">
+                                    </div>
+                                    <div>
+                                        <label for="reminderTime">Time</label>
+                                        <input id="reminderTime" type="time">
+                                    </div>
+                                </div>
+                                <label for="reminderNote">Optional note</label>
+                                <textarea id="reminderNote" rows="3" placeholder="Add a short note"></textarea>
+                                <button class="primary-btn reminder-btn" type="button">Add Reminder</button>
+                            </div>
+                        </article>
+                        <article class="reminder-calendar">
+                            <div class="calendar-header">
+                                <h3>August 2026</h3>
+                            </div>
+                            <div class="calendar-grid-mini">
+                                <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                                <button class="calendar-day-mini" data-date="2026-08-18" type="button">18</button>
+                                <button class="calendar-day-mini" data-date="2026-08-21" type="button">21</button>
+                                <button class="calendar-day-mini" data-date="2026-08-22" type="button">22</button>
+                                <button class="calendar-day-mini" data-date="2026-08-24" type="button">24</button>
+                                <button class="calendar-day-mini" data-date="2026-08-26" type="button">26</button>
+                            </div>
+                            <p class="calendar-hint">Select a date to filter reminders.</p>
+                        </article>
+                    </aside>
                 </section>
             </section>
 
@@ -452,52 +842,365 @@
                 </div>
             </section>
 
-            <section class="page" data-page="calendar">
-                <div class="calendar">
-                    <div class="calendar-header">
-                        <button class="icon-button" type="button" id="prevMonth" aria-label="Previous month">
-                            <span class="chevron chevron-left"></span>
-                        </button>
-                        <div class="calendar-title" id="calendarTitle"></div>
-                        <button class="icon-button" type="button" id="nextMonth" aria-label="Next month">
-                            <span class="chevron chevron-right"></span>
-                        </button>
+            <div class="notice-modal" id="noticeModal" role="dialog" aria-modal="true" hidden>
+                <div class="notice-modal-card">
+                    <div class="notice-modal-header">
+                        <div>
+                            <p class="notice-modal-kicker" id="noticeModalTag"></p>
+                            <h3 id="noticeModalTitle"></h3>
+                        </div>
+                        <button class="notice-modal-close" id="noticeModalClose" type="button">Close</button>
                     </div>
-                    <div class="calendar-grid" id="calendarGrid"></div>
+                    <p class="notice-modal-date" id="noticeModalDate"></p>
+                    <p class="notice-modal-body" id="noticeModalBody"></p>
                 </div>
+            </div>
+
+            <div class="task-modal" id="taskModal" role="dialog" aria-modal="true" hidden>
+                <div class="task-modal-card">
+                    <div class="task-modal-header">
+                        <div>
+                            <p class="task-modal-kicker" id="taskModalStatus"></p>
+                            <h3 id="taskModalTitle"></h3>
+                        </div>
+                        <button class="task-modal-close" id="taskModalClose" type="button">Close</button>
+                    </div>
+                    <div class="task-modal-meta">
+                        <span class="priority-tag high" id="taskModalPriority"></span>
+                        <span id="taskModalDate"></span>
+                    </div>
+                    <p class="task-modal-body" id="taskModalBody"></p>
+                </div>
+            </div>
+
+            <div class="note-modal" id="noteModal" role="dialog" aria-modal="true" hidden>
+                <div class="note-modal-card">
+                    <div class="note-modal-header">
+                        <div>
+                            <p class="note-modal-kicker" id="noteModalDate"></p>
+                            <h3 id="noteModalTitle"></h3>
+                        </div>
+                        <button class="note-modal-close" id="noteModalClose" type="button">Close</button>
+                    </div>
+                    <p class="note-modal-body" id="noteModalBody"></p>
+                </div>
+            </div>
+
+            <div class="alert-modal" id="alertModal" role="dialog" aria-modal="true" hidden>
+                <div class="alert-modal-card">
+                    <div class="alert-modal-header">
+                        <div>
+                            <p class="alert-modal-kicker" id="alertModalPriority"></p>
+                            <h3 id="alertModalTitle"></h3>
+                        </div>
+                        <button class="alert-modal-close" id="alertModalClose" type="button">Close</button>
+                    </div>
+                    <p class="alert-modal-date" id="alertModalDate"></p>
+                    <p class="alert-modal-body" id="alertModalBody"></p>
+                </div>
+            </div>
+
+            <div class="notification-modal" id="notificationModal" role="dialog" aria-modal="true" hidden>
+                <div class="notification-modal-card">
+                    <div class="notification-modal-header">
+                        <div>
+                            <p class="notification-modal-kicker" id="notificationModalType"></p>
+                            <h3 id="notificationModalTitle"></h3>
+                        </div>
+                        <button class="notification-modal-close" id="notificationModalClose" type="button">Close</button>
+                    </div>
+                    <p class="notification-modal-date" id="notificationModalDate"></p>
+                    <p class="notification-modal-body" id="notificationModalBody"></p>
+                </div>
+            </div>
+
+            <section class="page" data-page="calendar">
+                <section class="section calendar-header-section">
+                    <h1>Calendar</h1>
+                    <p class="subtitle">Plan your workdays, meetings, and deadlines.</p>
+                </section>
+                <section class="calendar-shell">
+                    <div class="calendar-panel">
+                        <div class="calendar-topbar">
+                            <div class="calendar-title-group">
+                                <button class="calendar-nav" type="button" id="prevMonth" aria-label="Previous month">
+                                    <span class="chevron chevron-left"></span>
+                                </button>
+                                <div class="calendar-title" id="calendarTitle"></div>
+                                <button class="calendar-nav" type="button" id="nextMonth" aria-label="Next month">
+                                    <span class="chevron chevron-right"></span>
+                                </button>
+                            </div>
+                            <div class="calendar-view-toggle">
+                                <button class="calendar-view active" type="button">Month</button>
+                                <button class="calendar-view" type="button">Week</button>
+                                <button class="calendar-view" type="button">Day</button>
+                            </div>
+                        </div>
+                        <div class="calendar-grid modern" id="calendarGrid"></div>
+                    </div>
+                    <aside class="calendar-events">
+                        <h2>Events</h2>
+                        <p class="calendar-events-date" id="calendarEventsDate">Select a date</p>
+                        <div class="calendar-events-list" id="calendarEventsList">
+                            <article class="event-card">
+                                <div class="event-dot meeting"></div>
+                                <div>
+                                    <h3>Weekly stand-up</h3>
+                                    <p>9:30 AM · Team Sync</p>
+                                </div>
+                            </article>
+                            <article class="event-card">
+                                <div class="event-dot focus"></div>
+                                <div>
+                                    <h3>Focus block</h3>
+                                    <p>11:00 AM · Deep work</p>
+                                </div>
+                            </article>
+                            <article class="event-card">
+                                <div class="event-dot deadline"></div>
+                                <div>
+                                    <h3>Submit KPI report</h3>
+                                    <p>4:00 PM · Deadline</p>
+                                </div>
+                            </article>
+                        </div>
+                    </aside>
+                </section>
             </section>
 
             <section class="page" data-page="notifications">
-                <section class="section">
-                    <h1>Notifications</h1>
-                    <p class="subtitle">All updates, including unread and read notifications.</p>
+                <section class="section notifications-header">
+                    <div class="notifications-header-row">
+                        <div>
+                            <h1>Notifications</h1>
+                            <p class="subtitle">View and manage all your alerts and updates.</p>
+                        </div>
+                        <div class="notifications-header-actions">
+                            <div class="notification-search">
+                                <i class="bi bi-search"></i>
+                                <input id="notificationSearch" type="search" placeholder="Search notifications">
+                            </div>
+                            <button class="primary-btn notification-btn mark-all-btn" type="button">Mark all as read</button>
+                        </div>
+                    </div>
+                    <div class="notifications-divider"></div>
                 </section>
-                <section class="card-grid">
-                    <article class="card large">
-                        <h2>All Notifications</h2>
-                        <ul class="list" id="notificationsAll"></ul>
-                        <div class="notification-empty" id="notificationsAllEmpty" hidden>No notifications to display.</div>
+                <section class="notification-tabs" role="tablist" aria-label="Notification categories">
+                    <button class="notification-tab active" data-filter="unread" type="button">Unread</button>
+                    <button class="notification-tab" data-filter="read" type="button">Read</button>
+                    <button class="notification-tab" data-filter="priority" type="button">Important</button>
+                    <button class="notification-tab" data-filter="pinned" type="button">Pinned</button>
+                </section>
+                <section class="notification-feed" id="notificationsFeed">
+                    <div class="notification-pinned">
+                        <h2>Pinned</h2>
+                        <article class="notification-card unread priority pinned" data-status="unread" data-filter="pinned" data-title="Pending approval for leave request" data-date="Today, 8:40 AM" data-type="alert" data-description="Your leave request needs manager approval.">
+                            <div class="notification-accent alert"></div>
+                            <div class="notification-content">
+                                <div class="notification-title-row">
+                                    <h2>Pending approval for leave request</h2>
+                                    <span class="notification-time">Today, 8:40 AM</span>
+                                </div>
+                                <p>Your leave request needs manager approval.</p>
+                                <div class="notification-meta">
+                                    <span class="notification-type"><i class="bi bi-exclamation-triangle"></i> Alert</span>
+                                    <span class="notification-unread-dot"></span>
+                                </div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="primary-btn notification-btn">View Details</button>
+                                <button class="primary-btn notification-btn">Mark as Read</button>
+                                <button class="primary-btn notification-btn">Dismiss</button>
+                            </div>
+                        </article>
+                    </div>
+                    <article class="notification-card unread" data-status="unread" data-filter="unread" data-title="Policy update shared by HR" data-date="Today, 9:10 AM" data-type="info" data-description="Review the updated leave and attendance policy shared by HR.">
+                        <div class="notification-accent info"></div>
+                        <div class="notification-content">
+                            <div class="notification-title-row">
+                                <h2>Policy update shared by HR</h2>
+                                <span class="notification-time">Today, 9:10 AM</span>
+                            </div>
+                            <p>Review the updated leave and attendance policy shared by HR.</p>
+                            <div class="notification-meta">
+                                <span class="notification-type"><i class="bi bi-info-circle"></i> Info</span>
+                                <span class="notification-unread-dot"></span>
+                            </div>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="primary-btn notification-btn">View Details</button>
+                            <button class="primary-btn notification-btn">Mark as Read</button>
+                            <button class="primary-btn notification-btn">Dismiss</button>
+                        </div>
+                    </article>
+                    <article class="notification-card read" data-status="read" data-filter="read" data-title="Weekly attendance report ready" data-date="Yesterday, 6:15 PM" data-type="info" data-description="Your weekly attendance report is available to review.">
+                        <div class="notification-accent info"></div>
+                        <div class="notification-content">
+                            <div class="notification-title-row">
+                                <h2>Weekly attendance report ready</h2>
+                                <span class="notification-time">Yesterday, 6:15 PM</span>
+                            </div>
+                            <p>Your weekly attendance report is available to review.</p>
+                            <div class="notification-meta">
+                                <span class="notification-type"><i class="bi bi-info-circle"></i> Info</span>
+                            </div>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="primary-btn notification-btn">View Details</button>
+                            <button class="primary-btn notification-btn">Dismiss</button>
+                        </div>
+                    </article>
+                    <article class="notification-card read" data-status="read" data-filter="read" data-title="IT maintenance scheduled" data-date="Aug 12, 11:00 AM" data-type="warning" data-description="Planned IT maintenance will run after business hours.">
+                        <div class="notification-accent warning"></div>
+                        <div class="notification-content">
+                            <div class="notification-title-row">
+                                <h2>IT maintenance scheduled</h2>
+                                <span class="notification-time">Aug 12, 11:00 AM</span>
+                            </div>
+                            <p>Planned IT maintenance will run after business hours.</p>
+                            <div class="notification-meta">
+                                <span class="notification-type"><i class="bi bi-exclamation-circle"></i> Warning</span>
+                            </div>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="primary-btn notification-btn">View Details</button>
+                            <button class="primary-btn notification-btn">Dismiss</button>
+                        </div>
                     </article>
                 </section>
             </section>
 
             <section class="page" data-page="profile">
-                <section class="section">
-                    <h1>Profile</h1>
-                    <p class="subtitle">Update your profile details and keep information accurate.</p>
+                <section class="section profile-header">
+                    <h1>My Profile</h1>
+                    <p class="subtitle">Manage your personal and professional information.</p>
                 </section>
-                <section class="card-grid">
-                    <article class="card large">
-                        <h2>Edit Profile</h2>
-                        <form class="form" id="profileForm" novalidate>
+                <section class="profile-layout">
+                    <article class="profile-hero">
+                        <div class="profile-hero-content">
+                            <div class="profile-avatar-wrap">
+                                <img class="profile-avatar" id="profilePhoto" src="" alt="Profile photo">
+                            </div>
+                            <div>
+                                <h2 id="profileNameDisplay">Arslan Khan</h2>
+                                <p id="profileRoleDisplay">Product Manager</p>
+                                <span class="profile-dept">Product Operations</span>
+                            </div>
+                        </div>
+                        <div class="profile-hero-meta">
+                            <div>
+                                <span>Employee ID</span>
+                                <strong>GP-2048</strong>
+                            </div>
+                            <div>
+                                <span>Date of Joining</span>
+                                <strong>Aug 10, 2023</strong>
+                            </div>
+                            <div>
+                                <span>Work Location</span>
+                                <strong>Lahore</strong>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="profile-card">
+                        <h3>Personal Information</h3>
+                        <div class="profile-grid">
+                            <div class="profile-field">
+                                <i class="bi bi-envelope"></i>
+                                <div>
+                                    <span>Email</span>
+                                    <strong>arslan.khan@goprogs.com</strong>
+                                </div>
+                            </div>
+                            <div class="profile-field">
+                                <i class="bi bi-telephone"></i>
+                                <div>
+                                    <span>Phone</span>
+                                    <strong>+92 300 123 4567</strong>
+                                </div>
+                            </div>
+                            <div class="profile-field">
+                                <i class="bi bi-briefcase"></i>
+                                <div>
+                                    <span>Department</span>
+                                    <strong>Product Operations</strong>
+                                </div>
+                            </div>
+                            <div class="profile-field">
+                                <i class="bi bi-person-badge"></i>
+                                <div>
+                                    <span>Employee ID</span>
+                                    <strong>GP-2048</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="profile-card">
+                        <h3>Professional Details</h3>
+                        <div class="profile-grid">
+                            <div class="profile-field">
+                                <i class="bi bi-diagram-3"></i>
+                                <div>
+                                    <span>Team</span>
+                                    <strong>Growth & Retention</strong>
+                                </div>
+                            </div>
+                            <div class="profile-field">
+                                <i class="bi bi-person-lines-fill"></i>
+                                <div>
+                                    <span>Reporting Manager</span>
+                                    <strong>Shazia Noor</strong>
+                                </div>
+                            </div>
+                            <div class="profile-field">
+                                <i class="bi bi-geo-alt"></i>
+                                <div>
+                                    <span>Location</span>
+                                    <strong>Lahore</strong>
+                                </div>
+                            </div>
+                            <div class="profile-field">
+                                <i class="bi bi-award"></i>
+                                <div>
+                                    <span>Role</span>
+                                    <strong>Product Manager</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="profile-card">
+                        <h3>Account Settings</h3>
+                        <form class="form profile-settings" id="profileForm" novalidate>
                             <label for="profileName">Full name</label>
                             <input id="profileName" type="text" placeholder="Arslan Khan" required>
                             <label for="profileRole">Designation</label>
                             <input id="profileRole" type="text" placeholder="Product Manager" required>
                             <label for="profileImage">Profile picture</label>
                             <input id="profileImage" type="file" accept="image/*">
+                            <div class="toggle-row">
+                                <span>Email notifications</span>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-row">
+                                <span>Reminder alerts</span>
+                                <label class="toggle">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-row">
+                                <span>System updates</span>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <button class="primary-btn profile-btn" type="submit">Save Changes</button>
                             <div class="form-note" id="profileStatus" hidden>Profile updated.</div>
-                            <button class="primary-btn" type="submit">Save Changes</button>
                         </form>
                     </article>
                 </section>
