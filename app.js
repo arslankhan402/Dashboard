@@ -1,4 +1,4 @@
-const logoutBtn = document.querySelector("#logoutBtn");
+﻿const logoutBtn = document.querySelector("#logoutBtn");
 
 const sidebarToggle = document.querySelector("#sidebarToggle");
 const sidebar = document.querySelector("#sidebar");
@@ -64,6 +64,21 @@ const notificationModalTitle = document.querySelector("#notificationModalTitle")
 const notificationModalDate = document.querySelector("#notificationModalDate");
 const notificationModalType = document.querySelector("#notificationModalType");
 const notificationModalBody = document.querySelector("#notificationModalBody");
+const userTotalCount = document.querySelector("#userTotalCount");
+const userActiveCount = document.querySelector("#userActiveCount");
+const userInactiveCount = document.querySelector("#userInactiveCount");
+const userNewCount = document.querySelector("#userNewCount");
+const userTableBody = document.querySelector("#userTableBody");
+const userSearch = document.querySelector("#userSearch");
+const userPrev = document.querySelector("#userPrev");
+const userNext = document.querySelector("#userNext");
+const userPageInfo = document.querySelector("#userPageInfo");
+const userModal = document.querySelector("#userModal");
+const userModalClose = document.querySelector("#userModalClose");
+const userModalTitle = document.querySelector("#userModalTitle");
+const userModalRole = document.querySelector("#userModalRole");
+const userModalEmail = document.querySelector("#userModalEmail");
+const userModalBody = document.querySelector("#userModalBody");
 
 const startWorkBtn = document.querySelector("#startWork");
 const startBreakBtn = document.querySelector("#startBreak");
@@ -103,7 +118,23 @@ const state = {
         { id: 2, text: "Pending approval for leave request.", unread: true, time: "Today, 8:40 AM" },
         { id: 3, text: "Weekly attendance report is ready.", unread: false, time: "Yesterday, 6:15 PM" },
         { id: 4, text: "IT maintenance scheduled for Friday.", unread: false, time: "Aug 12, 11:00 AM" }
+    ],
+    users: [
+        { id: "U-1021", name: "Arslan Khan", email: "arslan.khan@goprogs.com", role: "Product Manager", status: "Active", lastActive: "Today, 9:12 AM", isNew: true },
+        { id: "U-1022", name: "Shazia Noor", email: "shazia.noor@goprogs.com", role: "HR Lead", status: "Active", lastActive: "Today, 8:40 AM", isNew: false },
+        { id: "U-1023", name: "Imran Malik", email: "imran.malik@goprogs.com", role: "Sales Manager", status: "Inactive", lastActive: "Aug 12, 6:15 PM", isNew: false },
+        { id: "U-1024", name: "Neha Patel", email: "neha.patel@goprogs.com", role: "Customer Success", status: "Active", lastActive: "Today, 10:05 AM", isNew: true },
+        { id: "U-1025", name: "Vikram Rao", email: "vikram.rao@goprogs.com", role: "Finance Analyst", status: "Active", lastActive: "Yesterday, 5:25 PM", isNew: false },
+        { id: "U-1026", name: "Ritika Sharma", email: "ritika.sharma@goprogs.com", role: "Operations Lead", status: "Active", lastActive: "Today, 11:20 AM", isNew: true }
     ]
+};
+
+const userTableState = {
+    page: 1,
+    perPage: 4,
+    sortKey: "name",
+    sortDir: "asc",
+    query: ""
 };
 
 const PROFILE_STORAGE_KEY = "gp_profile";
@@ -297,7 +328,7 @@ function updateCalendarEvents() {
             <div class="event-dot ${event.type}"></div>
             <div>
                 <h3>${event.title}</h3>
-                <p>${event.time} · ${capitalize(event.type)}</p>
+                <p>${event.time} � ${capitalize(event.type)}</p>
             </div>
         </article>`
     )).join("");
@@ -362,6 +393,93 @@ function updateNotificationDots() {
     document.querySelectorAll(".notification-dot").forEach(dot => {
         dot.classList.toggle("visible", showDot);
     });
+}
+
+function getFilteredUsers() {
+    const query = userTableState.query.trim().toLowerCase();
+    return state.users.filter(user => {
+        if (!query) return true;
+        const haystack = `${user.id} ${user.name} ${user.email} ${user.role} ${user.status}`.toLowerCase();
+        return haystack.includes(query);
+    });
+}
+
+function sortUsers(users) {
+    const key = userTableState.sortKey;
+    const dir = userTableState.sortDir === "asc" ? 1 : -1;
+    return users.slice().sort((a, b) => {
+        const aVal = String(a[key] || "");
+        const bVal = String(b[key] || "");
+        return aVal.localeCompare(bVal) * dir;
+    });
+}
+
+function renderUserTable() {
+    if (!userTableBody || !userPageInfo) return;
+    const filtered = sortUsers(getFilteredUsers());
+    const totalPages = Math.max(1, Math.ceil(filtered.length / userTableState.perPage));
+    if (userTableState.page > totalPages) {
+        userTableState.page = totalPages;
+    }
+    const start = (userTableState.page - 1) * userTableState.perPage;
+    const pageItems = filtered.slice(start, start + userTableState.perPage);
+    userTableBody.innerHTML = pageItems.map(user => {
+        const statusClass = user.status === "Active" ? "active" : user.status === "Pending" ? "pending" : "inactive";
+        const initials = user.name.split(" ").map(part => part[0]).slice(0, 2).join("").toUpperCase();
+        return `<tr>
+            <td data-label="User"><div class="user-cell">
+                    <span class="user-avatar">${initials}</span>
+                    <span>${user.name}</span>
+                </div>
+            </td>
+            <td data-label="Email">${user.email}</td>
+            <td data-label="Role">${user.role}</td>
+            <td data-label="Status"><span class="status-pill ${statusClass}">${user.status}</span></td>
+            <td data-label="Last Active">${user.lastActive || "--"}</td>
+            <td data-label="Actions"><div class="user-actions">
+                    <button class="user-action-btn" data-action="view" data-id="${user.id}" type="button" aria-label="View user">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="user-action-btn" data-action="edit" data-id="${user.id}" type="button" aria-label="Edit user">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>`;
+    }).join("");
+    userPageInfo.textContent = `Page ${userTableState.page} of ${totalPages}`;
+    if (userPrev) userPrev.disabled = userTableState.page === 1;
+    if (userNext) userNext.disabled = userTableState.page === totalPages;
+}
+
+function updateUserSummary() {
+    if (!userTotalCount || !userActiveCount || !userInactiveCount || !userNewCount) return;
+    const total = state.users.length;
+    const active = state.users.filter(user => user.status === "Active").length;
+    const inactive = total - active;
+    const newUsers = state.users.filter(user => user.isNew).length;
+    userTotalCount.textContent = total;
+    userActiveCount.textContent = active;
+    userInactiveCount.textContent = inactive;
+    userNewCount.textContent = newUsers;
+}
+
+function openUserModal(user, action) {
+    if (!userModal || !user) return;
+    userModalTitle.textContent = user.name;
+    userModalRole.textContent = action === "edit" ? "Edit user" : user.role;
+    userModalEmail.textContent = user.email;
+    userModalBody.textContent = action === "edit"
+        ? "Editing is not enabled in this demo."
+        : "View user details and status information.";
+    userModal.hidden = false;
+    userModal.classList.add("show");
+}
+
+function closeUserModal() {
+    if (!userModal) return;
+    userModal.classList.remove("show");
+    userModal.hidden = true;
 }
 
 if (sidebarToggle && sidebar) {
@@ -516,6 +634,11 @@ updateButtons();
 if (calendarGrid) {
     renderCalendar(state.calendarDate);
     updateCalendarEvents();
+}
+
+if (userTableBody) {
+    renderUserTable();
+    updateUserSummary();
 }
 if (!getStoredSignIn()) {
     window.location.href = "index.html";
@@ -871,6 +994,69 @@ document.querySelectorAll(".mark-all-btn").forEach(button => {
     });
 });
 
+document.querySelectorAll(".sort-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        const key = button.dataset.sort;
+        if (!key) return;
+        if (userTableState.sortKey === key) {
+            userTableState.sortDir = userTableState.sortDir === "asc" ? "desc" : "asc";
+        } else {
+            userTableState.sortKey = key;
+            userTableState.sortDir = "asc";
+        }
+        renderUserTable();
+    });
+});
+
+if (userSearch) {
+    userSearch.addEventListener("input", () => {
+        userTableState.query = userSearch.value || "";
+        userTableState.page = 1;
+        renderUserTable();
+    });
+}
+
+
+
+if (userPrev) {
+    userPrev.addEventListener("click", () => {
+        if (userTableState.page > 1) {
+            userTableState.page -= 1;
+            renderUserTable();
+        }
+    });
+}
+
+if (userNext) {
+    userNext.addEventListener("click", () => {
+        userTableState.page += 1;
+        renderUserTable();
+    });
+}
+
+if (userTableBody) {
+    userTableBody.addEventListener("click", event => {
+        const btn = event.target.closest(".user-action-btn");
+        if (!btn) return;
+        const id = btn.dataset.id;
+        const action = btn.dataset.action || "view";
+        const user = state.users.find(item => item.id === id);
+        openUserModal(user, action);
+    });
+}
+
+if (userModalClose) {
+    userModalClose.addEventListener("click", closeUserModal);
+}
+
+if (userModal) {
+    userModal.addEventListener("click", event => {
+        if (event.target === userModal) {
+            closeUserModal();
+        }
+    });
+}
+
 if (profileForm) {
     profileForm.addEventListener("submit", event => {
         event.preventDefault();
@@ -900,3 +1086,7 @@ if (profileForm) {
         }
     });
 }
+
+
+
+

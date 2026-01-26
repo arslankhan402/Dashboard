@@ -82,6 +82,10 @@
                             <span class="nav-icon"><i class="bi bi-calendar3"></i></span>
                             <span class="nav-text">Calendar</span>
                         </a>
+                        <a href="#" class="nav-item" data-page="user-details">
+                            <span class="nav-icon"><i class="bi bi-person-circle"></i></span>
+                            <span class="nav-text">User</span>
+                        </a>
                     </nav>
                 </div>
                 <div class="sidebar-section sidebar-account">
@@ -914,6 +918,20 @@
                 </div>
             </div>
 
+            <div class="user-modal" id="userModal" role="dialog" aria-modal="true" hidden>
+                <div class="user-modal-card">
+                    <div class="user-modal-header">
+                        <div>
+                            <p class="user-modal-kicker" id="userModalRole"></p>
+                            <h3 id="userModalTitle"></h3>
+                        </div>
+                        <button class="user-modal-close" id="userModalClose" type="button">Close</button>
+                    </div>
+                    <p class="user-modal-email" id="userModalEmail"></p>
+                    <p class="user-modal-body" id="userModalBody"></p>
+                </div>
+            </div>
+
             <section class="page" data-page="calendar">
                 <section class="section calendar-header-section">
                     <h1>Calendar</h1>
@@ -1203,6 +1221,87 @@
                             <div class="form-note" id="profileStatus" hidden>Profile updated.</div>
                         </form>
                     </article>
+                </section>
+            </section>
+
+            <section class="page" data-page="user-details">
+                <section class="section user-details-header">
+                    <h1>User Overview</h1>
+                    <p class="subtitle">Manage and view user-related information.</p>
+                </section>
+                <section class="user-summary-cards">
+                    <article class="user-summary-pill">
+                        <div class="user-summary-icon"><i class="bi bi-people"></i></div>
+                        <div>
+                            <p>Total Users</p>
+                            <strong id="userTotalCount">0</strong>
+                        </div>
+                    </article>
+                    <article class="user-summary-pill">
+                        <div class="user-summary-icon"><i class="bi bi-person-check"></i></div>
+                        <div>
+                            <p>Active Users</p>
+                            <strong id="userActiveCount">0</strong>
+                        </div>
+                    </article>
+                    <article class="user-summary-pill">
+                        <div class="user-summary-icon"><i class="bi bi-person-dash"></i></div>
+                        <div>
+                            <p>Inactive Users</p>
+                            <strong id="userInactiveCount">0</strong>
+                        </div>
+                    </article>
+                    <article class="user-summary-pill">
+                        <div class="user-summary-icon"><i class="bi bi-person-plus"></i></div>
+                        <div>
+                            <p>New This Month</p>
+                            <strong id="userNewCount">0</strong>
+                        </div>
+                    </article>
+                </section>
+                <section class="user-actions-panel">
+                    <div class="user-table-search">
+                        <i class="bi bi-search"></i>
+                        <input id="userSearch" type="search" placeholder="Search users">
+                    </div>
+                </section>
+                <section class="user-table-card">
+                    <div class="user-table-header">
+                        <h2>Users</h2>
+                        <div class="user-table-controls">
+                            <div class="user-table-hint">Last updated today</div>
+                        </div>
+                    </div>
+                    <div class="user-table-wrapper">
+                        <table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <button class="sort-btn" data-sort="name" type="button">User <i class="bi bi-chevron-expand"></i></button>
+                                    </th>
+                                    <th>
+                                        <button class="sort-btn" data-sort="email" type="button">Email <i class="bi bi-chevron-expand"></i></button>
+                                    </th>
+                                    <th>
+                                        <button class="sort-btn" data-sort="role" type="button">Role <i class="bi bi-chevron-expand"></i></button>
+                                    </th>
+                                    <th>
+                                        <button class="sort-btn" data-sort="status" type="button">Status <i class="bi bi-chevron-expand"></i></button>
+                                    </th>
+                                    <th>
+                                        <button class="sort-btn" data-sort="lastActive" type="button">Last Active <i class="bi bi-chevron-expand"></i></button>
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="user-pagination">
+                        <button class="pagination-btn" id="userPrev" type="button">Prev</button>
+                        <span id="userPageInfo">Page 1 of 1</span>
+                        <button class="pagination-btn" id="userNext" type="button">Next</button>
+                    </div>
                 </section>
             </section>
         </main>
