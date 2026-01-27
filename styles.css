@@ -2110,6 +2110,24 @@ body {
     gap: 12px;
 }
 
+.leave-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.leave-form-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6c768f;
+    border: 1px solid #e3e9f2;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #f7f9fd;
+}
+
 .leave-dates {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));

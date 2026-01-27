@@ -188,7 +188,10 @@
                 </section>
                 <section class="leave-grid">
                     <article class="card leave-form-card">
-                        <h2>Apply for Leave</h2>
+                        <div class="leave-form-header">
+                            <h2>Apply for Leave</h2>
+                            <span class="leave-form-tag">Leave Form</span>
+                        </div>
                         <div class="form leave-form">
                             <label for="leaveType">Leave type</label>
                             <select id="leaveType">
@@ -200,15 +203,15 @@
                             <div class="leave-dates">
                                 <div>
                                     <label for="leaveFrom">From</label>
-                                    <input id="leaveFrom" type="date">
+                                    <input id="leaveFrom" type="date" required>
                                 </div>
                                 <div>
                                     <label for="leaveTo">To</label>
-                                    <input id="leaveTo" type="date">
+                                    <input id="leaveTo" type="date" required>
                                 </div>
                             </div>
                             <label for="leaveReason">Reason</label>
-                            <textarea id="leaveReason" rows="4" placeholder="Add a short reason for your leave request"></textarea>
+                            <textarea id="leaveReason" rows="4" placeholder="Add a short reason for your leave request" required></textarea>
                             <button class="primary-btn leave-btn">Apply Leave</button>
                         </div>
                     </article>
